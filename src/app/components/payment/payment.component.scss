@@ -1,0 +1,84 @@
+$light-blue: #3f51b5;
+
+.color-black {
+    color: black !important;
+}
+
+.padding-1em {
+    padding: 1em;
+}
+
+.span {
+    text-decoration: underline $light-blue;
+}
+
+.email {
+    color: $light-blue;
+
+    p {
+        text-decoration: underline;
+    }
+
+    mat-icon {
+        font-size: medium;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+.back-btn {
+    position: absolute;
+    top: 13px;
+    bottom: 99px;
+}
+
+.email-container {
+    position: relative;
+
+    .edit-payment-amt {
+        color: $light-blue;
+        position: absolute;
+        top: 23px;
+        right: 63px;
+    }
+}
+
+.add-btn {
+    background-color: $light-blue;
+    border-radius: 50%;
+    color: white;
+}
+
+.member-name {
+    color: #3f51b5;
+}
+
+.payment-tab {
+    margin-top: 1em;
+}
+
+.payments {
+    height: 71px;
+}
+
+.mat-button-toggle-appearance-standard,
+.mat-button-toggle {
+    border-left: none !important;
+    width: 80px !important;
+}
+
+.mat-button-toggle-group {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+// .mat-button-toggle-standalone.mat-button-toggle-appearance-standard:not([class*=mat-elevation-z]), .mat-button-toggle-group-appearance-standard:not([class*=mat-elevation-z]) {
+//     box-shadow: 5px 5px lightblue;
+// }
+
+.mat-button-toggle-group-appearance-standard {
+
+    border-radius: 0px !important;
+}

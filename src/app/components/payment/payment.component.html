@@ -1,0 +1,66 @@
+<div class="flex column padding-1em gap-05em relative">
+    <div class="flex column a-end">
+        <p class="no-margin ">{{current[0]}} {{current[1]}} {{current[2]}} {{current[3]}}</p>
+        <p class="no-margin ">{{current[4]}}</p>
+    </div>
+    <mat-icon (click)="close()" class="back-btn pointer">arrow_back</mat-icon>
+    <div class="flex column">
+        <p class="no-margin text-end">Payments of</p>
+        <div class="flex a-center gap-05em">
+            <img src="https://img.freepik.com/premium-vector/card-payment-icon-bank-terminal-card-payment_256722-639.jpg" class="payments">
+            <h2 class="no-margin member-name">{{selectedMember.fullName | titlecase}}</h2>
+        </div>
+    </div>
+    <div *ngIf="!addingPayment" class="flex column gap-1em">
+        <div [formGroup]="payedMonthsFormGroup" class="flex column column gap-05em">
+            <mat-button-toggle-group  formControlName="months" class="wrap" name="ingredients" aria-label="Ingredients" multiple>
+                <mat-button-toggle disabled *ngFor="let month of annualMonths" [value]="month">{{month}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div class="flex column a-center gap-05em">
+            <div class="flex gap-05em">
+                <mat-chip-listbox aria-label="Fish selection">
+                    <mat-chip-option (click)="changePaymentOption(indx)" [selected]="indx === 0"
+                        *ngFor="let option of paymentOptions; let indx = index">{{option}}</mat-chip-option>
+                </mat-chip-listbox>
+            </div>
+            <div (click)="addPayment()" title="Add payment" class="flex gap-05em pointer">
+                <p class="no-margin text-center"><strong><span class="span">{{selectedPaymentOption}}</span></strong>
+                        payment</p>
+                <mat-icon class="add-btn">add</mat-icon>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="paymentFormGroup" *ngIf="addingPayment" class="payment-tab flex column gap-05em">
+        <div class="flex gap-05em">
+            <p class="no-margin">Payment month:</p>
+            <div title="Change payment month" class="flex gap-1em a-center pointer" [matMenuTriggerFor]="menu">
+                <div class="flex a-center filter-members">
+                    <p class="no-margin span"><strong>{{selectedPaymentMonth}}</strong></p>
+                    <mat-icon>calendar_month</mat-icon>
+                </div>
+            </div>
+            <mat-menu class="absolute" #menu="matMenu">
+                <button mat-menu-item (click)="changePaymentMonth(month)"
+                    *ngFor="let month of paymentsMonths; let indx = index">{{month}}</button>
+            </mat-menu>
+        </div>
+        <div class="flex email-container column">
+            <mat-form-field appearance="fill" floatLabel="always">
+                <input formControlName="amout" [readonly]="isDefaultPaymentAmt" matInput type="number" placeholder="0">
+                <span matTextPrefix>R&nbsp;</span>
+                <mat-icon [class.color-black]="!isDefaultPaymentAmt" class="pointer edit-payment-amt" (click)="changePaymentAmt()">edit</mat-icon>
+                <mat-error *ngIf="paymentFormGroup.get('amout')?.hasError('required')">
+                    Payment amout is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <!-- <div  *ngIf="!paymentFormGroup.get('amout')?.hasError('required')" class="email flex">
+                <mat-icon>email</mat-icon>
+                <p class="no-margin">Email</p>
+            </div> -->
+        </div>
+        <div class="flex j-end">
+            <button (click)="submit()" mat-raised-button color="primary">Process</button>
+        </div>
+    </form>
+</div>

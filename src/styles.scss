@@ -1,0 +1,182 @@
+/* You can add global styles to this file, and also import other style files */
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    background-color: ghostwhite;
+    font-family: "Poppins", sans-serif !important;
+    height: 100dvh;
+}
+
+// Colors
+.color-red {
+    color: red;
+}
+
+
+// flex
+
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.center-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.a-end {
+    align-items: end;
+}
+
+.j-end {
+    justify-content: end;
+}
+
+.a-center {
+    align-items: center;
+}
+
+.j-center {
+    justify-content: center;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.absolute {
+    position: absolute;
+}
+
+
+.relative {
+    position: relative;
+}
+
+// spaces
+
+.no-margin {
+    margin: 0;
+}
+
+.gap-05em {
+    gap: .5em;
+}
+
+.gap-1em {
+    gap: 1em;
+}
+
+.gap-2em {
+    gap: 2em;
+}
+
+.gap-3em {
+    gap: 3em;
+}
+
+.full-width, app-toolbar {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.half-height {
+    height: 50%;
+}
+
+.half-width {
+    height: 50%;
+}
+
+.width-80 {
+    width: 80%;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+// font
+
+.text-center {
+    text-align: center;
+}
+
+.z-index {
+    z-index: 1;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// material
+
+.mat-mdc-text-field-wrapper {
+    height: unset !important; 
+    flex: unset !important; 
+}
+
+
+.mat-button-toggle-button {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+
+.mat-button-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mat-mdc-menu-panel {
+    overflow: hidden !important;
+}
+
+.mat-mdc-menu-content {
+    padding: 0px !important;
+}
+
+// Material responsive
+
+@media screen and (max-width: 960px) {
+    .mat-mdc-table .mdc-data-table__header-row {
+        .mat-sort-header-content {
+            &:nth-child(1) {
+                width: 133px;
+            }
+        }
+    }
+}

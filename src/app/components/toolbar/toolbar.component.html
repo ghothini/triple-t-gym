@@ -1,0 +1,9 @@
+<mat-toolbar class="flex gap-1em column">
+    <button (click)="toggleSideNav()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div class="flex gap-1em center-center full-width">
+        <h2>{{component.label}}</h2>
+        <mat-icon class="custom-icon">{{component.icon}}</mat-icon>
+    </div>
+</mat-toolbar>

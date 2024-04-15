@@ -1,0 +1,47 @@
+$color-white: white;
+
+mat-sidenav {
+    width: 254px;
+    background-color: blue
+}
+
+mat-toolbar {
+    background-color: black;
+    color: white;
+}
+
+.sideNav {
+    .p {
+        color: $color-white;
+        font-size: larger;
+
+        &:hover {
+            text-decoration: underline solid white;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .role {
+        color: $color-white;
+        font-size: larger;
+    }
+
+    .logout {
+        bottom: 0;
+    }
+}
+
+.selected-menu {
+    text-decoration: underline solid white;
+}
+
+.hr {
+    width: 90%;
+}
+
+.m-t-2em {
+    margin-top: 2em;
+}

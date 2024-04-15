@@ -1,0 +1,107 @@
+.main-container {
+    position: relative;
+    height: 100%;
+
+    .no-members-err {
+        color: red;
+        margin-left: 1em;
+        padding-top: 1em;
+    }
+
+    .search {
+        width: 200px;
+        padding: 10px;
+        border-radius: 7px;
+        border: 1px solid black;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .search-container {
+        position: relative;
+        margin-left: 1em;
+        margin-top: .5em;
+
+        .search-icon {
+            position: absolute;
+            top: 7px;
+            right: 10px;
+            font-size: 33px;
+        }
+    }
+
+    .add-member {
+        // padding: 30px;
+        height: 65px;
+        width: 65px;
+        background-color: blue;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 5px;
+        left: 20px;
+    }
+
+    mat-icon {
+        font-size: 37px;
+    }
+
+    .member-payments {
+        text-decoration: underline;
+        color: blueviolet;
+    }
+
+    .filtered-members {
+        margin-right: 2em;
+    }
+}
+
+.padding-10px {
+    padding: 1em;
+}
+
+.payment-img {
+    height: 46px;
+    color: blue;
+}
+
+mat-icon {
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    justify-content: center;
+}
+
+.span {
+    color: blue;
+    text-decoration: underline;
+}
+
+.action {
+    font-size: x-large !important;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 960px) {
+    .outer-search {
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
+
+    .mat-sort-header-content {
+        &:nth-child(1) {
+            width: 133px !important;
+        }
+    }
+
+    .mat-elevation-z8 {
+        overflow-x: auto;
+        background-color: white;
+    }
+
+    .filtered-members {
+        margin-right: 0em !important;
+        font-size: 20px;
+    }
+}

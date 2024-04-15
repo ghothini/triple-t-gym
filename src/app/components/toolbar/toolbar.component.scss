@@ -1,0 +1,21 @@
+mat-toolbar {
+    background-color: black;
+    color: white;
+}
+
+.mat-toolbar-single-row {
+    height: unset;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.custom-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: unset;
+    width: unset;
+    font-size: 46px;
+}

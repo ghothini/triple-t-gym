@@ -1,0 +1,31 @@
+<div class="flex center-center main-container">
+    <mat-card class="mat-card flex column gap-1em">
+        <h2 class="no-margin">Log In</h2>
+        <form [formGroup]="loginFormGroup" class=" full-width flex column  border-box ">
+            <!-- Email -->
+            <div class="flex column custom-field">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" id="email" placeholder="Enter your Email">
+                <small class="color-red no-margin"
+                    *ngIf="loginFormGroup.get('email')?.hasError('required') && loginFormGroup.get('email')?.touched">Email
+                    is
+                    <strong>required</strong></small>
+                <small class="color-red no-margin" *ngIf="loginFormGroup.get('email')?.hasError('pattern')">Enter
+                    a <strong>valid</strong> email address</small>
+            </div>
+            <!-- Password -->
+            <div class="flex column custom-field">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" id="password" placeholder="Enter your Password">
+                <small class="color-red no-margin"
+                    *ngIf="loginFormGroup.get('password')?.hasError('required') && loginFormGroup.get('password')?.touched">Password
+                    is
+                    <strong>required</strong></small>
+            </div>
+            <div class="flex gap-1em">
+                <button class="flex-1 pointer" (click)="submit()">SignIn</button>
+            </div>
+            <small class="forgot-passwd no-margin pointer color-red text-center">Forgot password?</small>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,78 @@
+.padding-10px {
+    padding: 0px 10px;
+}
+
+mat-card {
+    padding: 5px;
+}
+
+.title {
+    font-size: 23px;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+textarea {
+    font-family: "Poppins", sans-serif !important;
+    padding: 7px;
+    height: 94px !important; 
+    &:focus {
+        outline: none;
+    }
+}
+
+.add-person-icon {
+    font-size: 35px;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: unset;
+    width: unset;
+}
+
+// .mat-icon {
+//     height: 0px;
+//     width: 0px;
+// }
+
+.textarea-container {
+    height: 112px;
+}
+
+.show {
+    visibility: visible !important;
+}
+
+span {
+    margin-left: 0.3em;
+    font-weight: 700;
+}
+
+.err-msg {
+    color: red;
+    margin-left: 1.8em;
+    font-size: 12px;
+    display: flex;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 960px) {
+    .fields-container {
+        flex-direction: column;
+
+        mat-form-field {
+            width: 100%;
+        }
+
+        textarea {
+            margin: 0px .5px 0px 1px;
+        }
+    }
+
+    .last {
+        flex-direction: column-reverse !important;
+    }
+}
