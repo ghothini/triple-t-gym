@@ -1,1 +1,32 @@
 <app-toolbar [component]="selectedNav"></app-toolbar>
+<div class="flex column  main-container gap-1em">
+    <div class="flex column gap-05em center-center">
+        <div class="flex filter-months gap-05em">
+            <mat-checkbox id="checkbox" disabled checked>{{nowFullYear}}</mat-checkbox>
+        </div>
+    </div>
+    <div class="flex gap-1em">
+        <mat-card  *ngFor="let member of membersToShowOnCurrentPage" class="payment-profile flex column">
+            <div class="top flex center-center">
+                <div class="flex img-container center-center">
+                    <img class="member-img" [src]="member.member.gender === 'Male' ? '../../../assets/images/male-profile.png' : '../../../assets/images/female-profile.png'" alt="">
+                </div>
+                <p title="Join date" class="no-margin payments-title">{{member.member.joinDate | date}}</p>
+            </div>
+            <div class="flex-1 flex column a-center">
+                <p class="no-margin member-name"><strong>{{member.member.fullName | titlecase}}</strong></p>
+                <div class="flex gap-05em wrap center-center">
+                    <div *ngFor="let paymentMonth of member.payments" class="flex column month-payment pointer">
+                        <small class="no-margin">{{paymentMonth.monthForPayment | titlecase}}</small>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div class="flex j-end full-width">
+        <mat-paginator (page)="onPageChange($event)" #paginator [length]="totalItems"
+            [pageSizeOptions]="[10, 25, 100]"
+            aria-label="Select page">
+        </mat-paginator>
+    </div>
+</div>

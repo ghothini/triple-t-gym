@@ -1,0 +1,61 @@
+$bg-color: blue;
+
+.main-container {
+    padding: 1em;
+
+    .payment-profile {
+        width: 200px;
+        border-radius: 18px;
+        padding: 5px;
+
+        .member-name {
+            font-size: large;
+        }
+
+        .top {
+            height: 129px;
+            background-color: $bg-color;
+            position: relative;
+            border-top-right-radius: 18px;
+            border-top-left-radius: 18px;
+
+            .img-container {
+                background-color: white;
+                padding: 11px;
+                border-radius: 50%;
+
+                .member-img {
+                    height: 84px;
+                }
+            }
+
+            .payments-title {
+                position: absolute;
+                font-size: 13px;
+                bottom: 0;
+                right: 2px;
+                color: white;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .month-payment {
+        background-color: $bg-color;
+        color: white;
+        padding: 2px;
+        border-radius: 7px;
+        overflow: auto;
+
+        small {
+            font-size: small;
+        }
+    }
+
+    .mat-mdc-paginator {
+        background: #fafafa !important;
+    }
+}
