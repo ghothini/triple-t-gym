@@ -1,6 +1,16 @@
+$app-secondary: #3f51b5;
+
 .main-container {
     position: relative;
     height: 100%;
+
+    form {
+        height: calc(100dvh - 48px);
+    }
+
+    .mat-elevation-z8 {
+        overflow-y: auto;
+    }
 
     .no-members-err {
         color: red;
@@ -36,7 +46,7 @@
         // padding: 30px;
         height: 65px;
         width: 65px;
-        background-color: blue;
+        background-color: $app-secondary;
         border-radius: 50%;
         position: absolute;
         bottom: 5px;
@@ -63,7 +73,6 @@
 
 .payment-img {
     height: 46px;
-    color: blue;
 }
 
 mat-icon {

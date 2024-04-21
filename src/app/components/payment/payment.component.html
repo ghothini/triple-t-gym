@@ -49,7 +49,7 @@
             <mat-form-field appearance="fill" floatLabel="always">
                 <input formControlName="amout" [readonly]="isDefaultPaymentAmt" matInput type="number" placeholder="0">
                 <span matTextPrefix>R&nbsp;</span>
-                <mat-icon [class.color-black]="!isDefaultPaymentAmt" class="pointer edit-payment-amt" (click)="changePaymentAmt()">edit</mat-icon>
+                <mat-icon [class.color-light-blue]="!isDefaultPaymentAmt" class="pointer edit-payment-amt" (click)="changePaymentAmt()">edit</mat-icon>
                 <mat-error *ngIf="paymentFormGroup.get('amout')?.hasError('required')">
                     Payment amout is <strong>required</strong>
                 </mat-error>

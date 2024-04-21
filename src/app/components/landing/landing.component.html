@@ -3,19 +3,25 @@
         <mat-sidenav #sideNav mode="over" opened>
             <div class="full-height a-center flex column sideNav relative">
                 <div class="flex column">
-                    <img src="../../../assets/images/profile.png" alt="Profile image">
-                    <p class="no-margin text-center role" title="Role">Triple T Gym</p>
+                    <!-- <img src="../../../assets/images/profile.png" alt="Profile image"> -->
+                    <img class="logo" src="../../../assets/images/triple-t-circle-logo-gw.png"
+                        alt="Triple t logo image">
+                    <p class="no-margin text-center role" title="Signed in role">{{currentUser.role | titlecase}}</p>
                 </div>
                 <hr class="hr">
                 <div class="flex column gap-1em m-t-2em">
                     <div *ngFor="let menu of menuItems;let indx = index" class="flex a-center gap-1em pointer">
                         <mat-icon>{{menu.icon}}</mat-icon>
-                        <p (click)="selectMenu(indx)" [class.selected-menu]="selectedMenu === indx" [routerLink]="menu.route" class="no-margin p">{{menu.label}}</p>
+                        <p (click)="selectMenu(indx)" [class.selected-menu]="selectedMenu === indx"
+                            [routerLink]="menu.route" class="no-margin p">{{menu.label}}</p>
                     </div>
                 </div>
-                <div (click)="logout()" class="flex gap-05em a-center pointer absolute logout">
-                    <mat-icon>logout</mat-icon>
-                    <p class="p">Logout</p>
+                <div class="flex column gap-05em a-center absolute logout">
+                    <div (click)="logout()" class="flex gap-05em a-center pointer">
+                        <mat-icon>logout</mat-icon>
+                        <p class="p">Logout</p>
+                    </div>
+                    <img class="logo-title" src="../../../assets/images/triple-title-logo.png" alt="">
                 </div>
             </div>
         </mat-sidenav>

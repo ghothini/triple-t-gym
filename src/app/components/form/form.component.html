@@ -75,7 +75,7 @@
             <mat-checkbox *ngIf="!edittingMember" (click)="changeMemberType()" class="example-margin">Late registration?</mat-checkbox>
         </div>
         <div class="flex j-end">
-            <button (click)="submit()" mat-raised-button color="primary">{{edittingMember ? 'Save' : 'Submit'}}</button>
+            <button (click)="submit()" color="primary" mat-raised-button>{{edittingMember ? 'Save' : 'Submit'}}</button>
         </div>
     </form>
 </div>

@@ -1,10 +1,89 @@
 $bg-color: blue;
+$app-secondary: #3f51b5;
+
+// Months colors
+$jan: rgb(56 55 255 / 60%);
+$feb: rgb(183 123 165 / 60%);
+$mar: rgb(68 69 59 / 60%);
+$apr: rgba(75, 192, 192, 0.6);
+$may: rgba(153, 102, 255, 0.6);
+$june: rgba(255, 159, 64, 0.6);
+$july: rgba(255, 99, 132, 0.6);
+$aug: rgba(54, 162, 235, 0.6);
+$sept: rgba(255, 206, 86, 0.6);
+$oct: rgb(29 34 53 / 60%);
+$nov: rgb(169 255 162 / 60%);
+$dec: rgb(255 55 66 / 60%);
+
+.color-red {
+    color: red;
+}
+
+.bg-jan {
+    background-color: $jan;
+}
+
+.bg-feb {
+    background-color: $feb;
+}
+
+.bg-mar {
+    background-color: $mar;
+}
+
+.bg-apr {
+    background-color: $apr;
+}
+
+.bg-may {
+    background-color: $may;
+}
+
+.bg-june {
+    background-color: $june;
+}
+
+.bg-july {
+    background-color: $july;
+}
+
+.bg-aug {
+    background-color: $aug;
+}
+
+.bg-sept {
+    background-color: $sept;
+}
+
+.bg-oct {
+    background-color: $oct;
+}
+
+.bg-nov {
+    background-color: $nov;
+}
+
+.bg-dec {
+    background-color: $dec;
+}
 
 .main-container {
-    padding: 1em;
+    padding: 1em 1em 0em 1em;
+    height: calc(100dvh - 64px);
+
+    .key-container {
+        height: 34px;
+        width: 68px;
+
+        small {
+            font-size: 12px;
+            color: white;
+        }
+    }
 
     .payment-profile {
         width: 200px;
+        height: 255px;
         border-radius: 18px;
         padding: 5px;
 
@@ -13,8 +92,9 @@ $bg-color: blue;
         }
 
         .top {
+            padding: 1em 0em;
             height: 129px;
-            background-color: $bg-color;
+            background-color: $app-secondary;
             position: relative;
             border-top-right-radius: 18px;
             border-top-left-radius: 18px;
@@ -43,19 +123,82 @@ $bg-color: blue;
         }
     }
 
-    .month-payment {
-        background-color: $bg-color;
-        color: white;
-        padding: 2px;
-        border-radius: 7px;
-        overflow: auto;
+    .annual-payments {
+        height: 56px;
+        padding-left: .5em;
+        overflow-x: auto;
 
         small {
             font-size: small;
+            color: white;
+            padding: 2px;
+            border-radius: 7px;
+        }
+
+        .payment-img {
+            height: 46px;
         }
     }
 
     .mat-mdc-paginator {
         background: #fafafa !important;
+    }
+}
+
+.m-t-05em {
+    margin-top: .5em;
+}
+
+// Responsive
+
+@media screen and (max-width: 1055px) {
+    .keys-main-container {
+        gap: 0em;
+    }
+}
+
+@media screen and (max-width: 927px) {
+    .keys-wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 872px) {
+    .payment-profile-container {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .payment-profile {
+        width: 191px !important;
+    }
+
+}
+
+@media screen and (max-width: 414px) {
+    .payment-profile {
+        width: 182px !important;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .payment-profile {
+        width: 171px !important;
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+    .payment-profile {
+        width: 163px !important;
+    }
+}
+
+@media screen and (max-width: 362px) {
+
+    .payment-profile {
+        width: 156px !important;
     }
 }

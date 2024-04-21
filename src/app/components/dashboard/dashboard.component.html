@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex a-center column">
+        <div class="flex a-center column"> 
             <h2 class="no-margin text-center">Business summary</h2>
             <div [formGroup]="paymentPlansFormGroup" class="flex column">
                 <app-pie [totalMembersPayments]="totalMembersPayments"></app-pie>
@@ -79,7 +79,7 @@
                         <div class="flex column edit-plan">
                             <div class="flex gap-1em a-center">
                                 <label for="month">Month</label>
-                                <mat-icon [class.color-black]="isEddingPlans" title="Edit" class="pointer edit-month-plan"
+                                <mat-icon [class]="isEddingPlans" title="Edit" class="pointer edit-month-plan"
                                     (click)="editPlans()">edit</mat-icon>
                             </div>
                             <input type="text" [readonly]="!isEddingPlans" formControlName="month" id="month"

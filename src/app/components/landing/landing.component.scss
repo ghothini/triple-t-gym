@@ -1,8 +1,10 @@
 $color-white: white;
+$logo-red: #da695a;
+$app-secondary: #3f51b5;
 
 mat-sidenav {
     width: 254px;
-    background-color: blue
+    background-color: ghostwhite;
 }
 
 mat-toolbar {
@@ -12,11 +14,10 @@ mat-toolbar {
 
 .sideNav {
     .p {
-        color: $color-white;
         font-size: larger;
 
         &:hover {
-            text-decoration: underline solid white;
+            text-decoration: underline solid $app-secondary;
         }
 
         &:focus {
@@ -25,8 +26,16 @@ mat-toolbar {
     }
 
     .role {
-        color: $color-white;
-        font-size: larger;
+        // color: $app-secondary;
+        font-size: x-large;
+    }
+
+    .logo {
+        width: 176px;
+    }
+
+    .logo-title {
+        width: 244px;
     }
 
     .logout {
@@ -35,7 +44,7 @@ mat-toolbar {
 }
 
 .selected-menu {
-    text-decoration: underline solid white;
+    text-decoration: underline solid $app-secondary;
 }
 
 .hr {

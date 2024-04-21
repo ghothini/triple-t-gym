@@ -12,6 +12,7 @@ export class LandingComponent implements OnInit {
   selectedMenu: any = 0
   screenWidth!: number;
   sideNavElement: any;
+  currentUser: any;
   menuItems: any[] = [
     { label: 'Dashboard', icon: 'dashboard', route: 'dashboard' },
     { label: 'Payments', icon: 'payment', route: 'payments' },
@@ -20,6 +21,7 @@ export class LandingComponent implements OnInit {
 
   constructor(private router: Router, private sharedService: SharedService) {
     this.router.navigate(['/landing/dashboard']);
+    this.currentUser = this.sharedService.getStorage('currentUser','session');
     this.sharedService.watchSideNavChanges().subscribe((changes: any) => {
       this.sidenav.toggle();
     })

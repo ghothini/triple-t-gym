@@ -1,5 +1,6 @@
-<div class="flex center-center main-container">
-    <mat-card class="mat-card flex column gap-1em">
+<div class="flex center-center main-container bg-img">
+    <mat-card class="mat-card flex column gap-1em center-center">
+        <img src="../../../assets/images/triple-t-logo.png" class="logo" alt="Triple t gym logo image">
         <h2 class="no-margin">Log In</h2>
         <form [formGroup]="loginFormGroup" class=" full-width flex column  border-box ">
             <!-- Email -->
@@ -23,9 +24,9 @@
                     <strong>required</strong></small>
             </div>
             <div class="flex gap-1em">
-                <button class="flex-1 pointer" (click)="submit()">SignIn</button>
+                <button class="flex-1 pointer bg-img color-white" (click)="submit()">SignIn</button>
             </div>
-            <small class="forgot-passwd no-margin pointer color-red text-center">Forgot password?</small>
+            <small (click)="forgotPassword()" class="forgot-passwd no-margin pointer color-red text-center">Forgot password?</small>
         </form>
     </mat-card>
 </div>

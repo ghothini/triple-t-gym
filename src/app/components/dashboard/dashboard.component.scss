@@ -1,7 +1,11 @@
-$blue: blue;
+$blue: #3f51b5;
 
 .color-black {
     color: black !important;
+}
+
+.color-secondary {
+    color: $blue !important;
 }
 
 .total-members {
@@ -36,7 +40,7 @@ mat-icon {
     width: 0;
     overflow: visible;
     font-size: large;
-    color: $blue;
+    color: black;
     margin-top: -3px;
 }
 
@@ -51,13 +55,6 @@ mat-icon {
             outline: none;
         }
     }
-
-    // .suffix {
-    //     position: absolute;
-    //     right: 3px;
-    //     bottom: 4px;
-    //     font-weight: 500;
-    // }
 }
 
 .total-prc {
@@ -74,7 +71,7 @@ mat-icon {
     width: 120px;
     gap: 3px;
     border-radius: 7px;
-    background-color: blue;
+    background-color: $blue;
     color: white;
 
     p {
@@ -95,7 +92,7 @@ mat-icon {
         width: 24px;
         height: 24px;
         padding: 5px;
-        background-color: blue;
+        background-color: $blue;
         border-radius: 50%;
         color: white;
     }

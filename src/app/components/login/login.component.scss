@@ -1,17 +1,30 @@
 $bg-color: blue;
+$logo-red: #da695a;
+$app-bg: linear-gradient(to right, #65657d, #f9eeee);
+
+.bg-img {
+    background-image: $app-bg;
+}
+
+.color-white {
+    color: white;
+}
 
 .mat-card {
     width: 280px;
     background-color: white;
     padding: 10px 10px;
+
+    .logo {
+        width: 220px;
+    }
 }
 
 .main-container {
     height: 100%;
 
     h2 {
-        margin-left: 7px;
-        color: $bg-color;
+        color: $logo-red;
     }
 
     .custom-field {

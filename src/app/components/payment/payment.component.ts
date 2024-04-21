@@ -56,7 +56,7 @@ export class PaymentComponent {
     const allPayments = this.sharedService.getStorage('allPayments', 'local');
     let myPayments = [];
     if (allPayments.length > 0) {
-      myPayments = allPayments.filter((payment: any) => payment.member === this.selectedMember.email);
+      myPayments = allPayments.filter((payment: any) => payment.member === selectedMember.email);
       myPayments.forEach((payment: any) => this.payedMonths.push(payment.monthForPayment));
       this.payedMonthsFormGroup.setValue({
         months: this.payedMonths

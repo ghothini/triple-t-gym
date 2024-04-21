@@ -260,6 +260,7 @@ export class DashboardComponent implements AfterViewInit {
     if (confirmation?.toLowerCase() !== 'yes') {
       this.snackbar.open('Action cancelled', 'Ok', { duration: 3000 });
       this.getPaymentPlans();
+      this.isEddingPlans = false;
       return;
     }
 

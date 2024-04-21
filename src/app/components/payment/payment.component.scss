@@ -4,6 +4,10 @@ $light-blue: #3f51b5;
     color: black !important;
 }
 
+.color-light-blue {
+    color: $light-blue;
+}
+
 .padding-1em {
     padding: 1em;
 }
@@ -38,7 +42,6 @@ $light-blue: #3f51b5;
     position: relative;
 
     .edit-payment-amt {
-        color: $light-blue;
         position: absolute;
         top: 23px;
         right: 63px;
@@ -52,7 +55,7 @@ $light-blue: #3f51b5;
 }
 
 .member-name {
-    color: #3f51b5;
+    color: $light-blue;
 }
 
 .payment-tab {

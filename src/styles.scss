@@ -172,6 +172,24 @@ body {
     padding: 0px !important;
 }
 
+.mat-mdc-form-field-focus-overlay {
+    background-color: white !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+}
+
+.mat-drawer-container,
+.mat-drawer-inner-container,
+.mat-drawer {
+    overflow: visible !important;
+}
+
+.mat-drawer-container {
+    background-color: white !important;
+}
+
 // Material responsive
 
 @media screen and (max-width: 960px) {
