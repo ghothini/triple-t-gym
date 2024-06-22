@@ -66,8 +66,6 @@ export class PaymentsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const checkboxElement = document.getElementById('checkbox') as HTMLElement;
-    console.log("checkboxElement", checkboxElement.innerHTML)
   }
 
   // Method to update items to show on the current page

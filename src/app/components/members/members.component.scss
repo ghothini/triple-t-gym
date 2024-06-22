@@ -71,8 +71,11 @@ $app-secondary: #3f51b5;
     padding: 1em;
 }
 
-.payment-img {
-    height: 46px;
+.payment-icon {
+    padding: 0px;
+    background-color: $app-secondary;
+    border-radius: 50%;
+    font-size: large !important;
 }
 
 mat-icon {

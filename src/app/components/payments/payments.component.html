@@ -2,7 +2,7 @@
 <div class="flex column  main-container gap-1em">
     <div class="flex keys-main-container gap-05em center-center column">
         <div [formGroup]="yearFormGroup" class="flex filter-months gap-05em a-center">
-            <mat-form-field >
+            <mat-form-field>
                 <mat-label>Year & COLOR KEYS</mat-label>
                 <mat-select formControlName="year">
                     <mat-option [value]="nowFullYear">{{nowFullYear}}</mat-option>
@@ -18,12 +18,14 @@
             </div>
         </div>
     </div>
-    <div class="flex payment-profile-container gap-1em flex-1 wrap">
-    <h2 *ngIf="membersToShowOnCurrentPage.length < 1" class="color-red no-margin">0 payments added.</h2>
-    <mat-card  *ngFor="let member of membersToShowOnCurrentPage" class="payment-profile flex column">
+    <div [class.height-649px]="membersToShowOnCurrentPage.length < 1" class="flex payment-profile-container gap-1em flex-1 wrap">
+        <h2 *ngIf="membersToShowOnCurrentPage.length < 1" class="color-red no-margin">0 payments added.</h2>
+        <mat-card *ngFor="let member of membersToShowOnCurrentPage" class="payment-profile flex column">
             <div class="top flex center-center">
                 <div class="flex img-container center-center">
-                    <img class="member-img pointer" [src]="member.member.gender === 'Male' ? '../../../assets/images/male-profile.png' : '../../../assets/images/female-profile.png'" alt="">
+                    <img class="member-img pointer"
+                        [src]="member.member.gender === 'Male' ? '../../../assets/images/male-profile.png' : '../../../assets/images/female-profile.png'"
+                        alt="">
                 </div>
                 <p title="Join date" class="no-margin payments-title">{{member.member.joinDate | date}}</p>
             </div>
@@ -34,19 +36,20 @@
                         <small [ngClass]="{'bg-jan': paymentMonth.monthForPayment === 'January','bg-feb': paymentMonth.monthForPayment === 'Febuary', 'bg-mar': paymentMonth.monthForPayment === 'March',
                         'bg-apr': paymentMonth.monthForPayment === 'April','bg-may': paymentMonth.monthForPayment === 'May','bg-june': paymentMonth.monthForPayment === 'June','bg-july': paymentMonth.monthForPayment === 'July',
                         'bg-aug': paymentMonth.monthForPayment === 'August','bg-sept': paymentMonth.monthForPayment === 'September','bg-oct': paymentMonth.monthForPayment === 'October','bg-nov': paymentMonth.monthForPayment === 'November',
-                        'bg-dec': paymentMonth.monthForPayment === 'December'}" 
-                         class="no-margin">{{paymentMonth.monthForPayment}}</small>
+                        'bg-dec': paymentMonth.monthForPayment === 'December'}"
+                            class="no-margin">{{paymentMonth.monthForPayment}}</small>
                     </div>
                 </div>
             </div>
-            <div class="flex j-center m-t-05em">
-                <img title="Add payment" class="payment-img pointer" (click)="seePayment(member.member)" src="https://img.freepik.com/premium-vector/card-payment-icon-bank-terminal-card-payment_256722-639.jpg" alt="Add payment image">
+            <div class="flex j-center">
+                <img title="Add payment" class="payment-img pointer" (click)="seePayment(member.member)"
+                    src="https://img.freepik.com/premium-vector/card-payment-icon-bank-terminal-card-payment_256722-639.jpg"
+                    alt="Add payment image">
             </div>
         </mat-card>
     </div>
-    <div class="flex j-end full-width">
-        <mat-paginator (page)="onPageChange($event)" #paginator [length]="totalItems"
-            [pageSizeOptions]="[12, 25, 100]"
+    <div class="flex flex-1 a-end j-end full-width">
+        <mat-paginator (page)="onPageChange($event)" #paginator [length]="totalItems" [pageSizeOptions]="[12, 25, 100]"
             aria-label="Select page">
         </mat-paginator>
     </div>

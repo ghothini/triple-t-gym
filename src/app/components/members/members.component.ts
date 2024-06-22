@@ -93,7 +93,7 @@ export class MembersComponent implements AfterViewInit {
     this.dialog.open(PaymentComponent,{
       data: member,
       width: '335px',
-      // height: '50%',
+      height: '509px',
     });
   }
 }

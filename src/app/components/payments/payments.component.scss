@@ -67,6 +67,10 @@ $dec: rgb(255 55 66 / 60%);
     background-color: $dec;
 }
 
+.height-649px {
+    height: 649px;
+}
+
 .main-container {
     padding: 1em 1em 0em 1em;
     height: calc(100dvh - 64px);
@@ -83,7 +87,7 @@ $dec: rgb(255 55 66 / 60%);
 
     .payment-profile {
         width: 200px;
-        height: 255px;
+        height: 285px;
         border-radius: 18px;
         padding: 5px;
 
@@ -121,22 +125,22 @@ $dec: rgb(255 55 66 / 60%);
                 }
             }
         }
-    }
 
-    .annual-payments {
-        height: 56px;
-        padding-left: .5em;
-        overflow-x: auto;
-
-        small {
-            font-size: small;
-            color: white;
-            padding: 2px;
-            border-radius: 7px;
+        .annual-payments {
+            height: 56px;
+            padding-left: .5em;
+            overflow-x: auto;
+    
+            small {
+                font-size: small;
+                color: white;
+                padding: 2px;
+                border-radius: 7px;
+            }
         }
-
+    
         .payment-img {
-            height: 46px;
+            height: 57px;
         }
     }
 

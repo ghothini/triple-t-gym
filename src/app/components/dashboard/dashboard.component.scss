@@ -17,6 +17,25 @@ $blue: #3f51b5;
     text-decoration: underline;
 }
 
+.main-container {
+    padding: 1em;
+    .charts-container {
+        .chart-container {
+            padding: 10px;
+            flex-direction: column !important;
+            gap: .5em !important;
+        }
+    }
+
+}
+
+.outer-container {
+    .welcom-txt {
+        font-size: x-large;
+        font-weight: 500;
+    }
+}
+
 .plans-controls {
     position: relative;
     height: 92px;
@@ -76,25 +95,6 @@ mat-icon {
 
     p {
         font-size: larger;
-    }
-}
-
-.members-container {
-    flex-direction: column;
-    align-items: start;
-    position: relative;
-
-    .phone-frame {
-        height: 352px;
-    }
-
-    .members-total-no {
-        width: 24px;
-        height: 24px;
-        padding: 5px;
-        background-color: $blue;
-        border-radius: 50%;
-        color: white;
     }
 }
 

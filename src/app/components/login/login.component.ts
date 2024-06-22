@@ -18,6 +18,16 @@ export class LoginComponent {
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
       password: new FormControl('', [Validators.required]),
     })
+    // Demo Temp
+    localStorage.setItem('managementUsers',JSON.stringify([{
+        email: 'admin@triplet.com',
+        password: 'password',
+        role: 'administrator'
+    },{
+        email: 'operator@triplet.com',
+        password: 'password',
+        role: 'operator'
+    }]))
   }
 
   submit() {

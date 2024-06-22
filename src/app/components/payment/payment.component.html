@@ -1,16 +1,18 @@
 <div class="flex column padding-1em gap-05em relative">
-    <div class="flex column a-end">
-        <p class="no-margin ">{{current[0]}} {{current[1]}} {{current[2]}} {{current[3]}}</p>
-        <p class="no-margin ">{{current[4]}}</p>
-    </div>
     <mat-icon (click)="close()" class="back-btn pointer">arrow_back</mat-icon>
-    <div class="flex column">
-        <p class="no-margin text-end">Payments of</p>
+    <div class="flex column m-t-1em">
         <div class="flex a-center gap-05em">
-            <img src="https://img.freepik.com/premium-vector/card-payment-icon-bank-terminal-card-payment_256722-639.jpg" class="payments">
-            <h2 class="no-margin member-name">{{selectedMember.fullName | titlecase}}</h2>
+            <mat-icon>trending_up</mat-icon>
+            <h2 class="no-margin primary-color">{{selectedMember.fullName | titlecase}}</h2>
         </div>
     </div>
+    <div class="flex column">
+        <div class="flex gap-05em a-center">
+            <p class="no-margin ">{{current[0]}} {{current[1]}} {{current[2]}} <strong>{{current[3]}}</strong> </p>
+        </div>
+        <p class="no-margin ">{{current[4]}}</p>
+    </div>
+    <p *ngIf="!addingPayment" class="no-margin primary-color"><strong>Active payments</strong></p>
     <div *ngIf="!addingPayment" class="flex column gap-1em">
         <div [formGroup]="payedMonthsFormGroup" class="flex column column gap-05em">
             <mat-button-toggle-group  formControlName="months" class="wrap" name="ingredients" aria-label="Ingredients" multiple>
