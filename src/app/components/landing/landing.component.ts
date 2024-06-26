@@ -15,7 +15,7 @@ export class LandingComponent implements OnInit {
   currentUser: any;
   menuItems: any[] = [
     { label: 'Dashboard', icon: 'dashboard', route: 'dashboard' },
-    { label: 'Payments', icon: 'payment', route: 'payments' },
+    { label: 'Transactions', icon: 'trending_up', route: 'transactions' },
     { label: 'Members', icon: 'group', route: 'members' },
   ]
 

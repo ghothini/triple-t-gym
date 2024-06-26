@@ -15,7 +15,7 @@ import { PaymentComponent } from '../payment/payment.component';
   styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements AfterViewInit {
-  displayedColumns: string[] = ['membershipNo','joinDate', 'fullName', 'gender', 'contact', 'payments', 'actions'];
+  displayedColumns: string[] = ['membershipNo','joinDate', 'email', 'gender', 'contact', 'payments', 'actions'];
   dataSource: any;
   allMembers: any;
   gymMembersAvailable: boolean = false;
@@ -59,7 +59,7 @@ export class MembersComponent implements AfterViewInit {
 
   assignMembers() {
     this.allMembers = this.sharedService.getStorage('gymMembers', 'local');
-    this.dataSource = new MatTableDataSource<any>(this.allMembers);
+    this.dataSource = new MatTableDataSource<any>(this.allMembers.reverse());
     if (this.allMembers.length > 0) {
       this.gymMembersAvailable = true;
     } else {
@@ -69,8 +69,7 @@ export class MembersComponent implements AfterViewInit {
 
   editMember(member: any) {
     const dialogRef = this.dialog.open(FormComponent, {
-      data: member,
-      height: '80%'
+      data: member
     })
     dialogRef.afterClosed().subscribe((result: any) => {
       this.assignMembers();

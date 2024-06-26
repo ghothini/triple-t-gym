@@ -9,9 +9,32 @@ body {
     height: 100dvh;
 }
 
+$app-secondary: #e7e1fc;
+
 // Colors
 .color-red {
     color: red;
+}
+
+// Scrollbar
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 
@@ -74,7 +97,7 @@ body {
 }
 
 .gap-05em {
-    gap: .5em;
+    gap: .5em !important;
 }
 
 .gap-1em {
@@ -89,7 +112,8 @@ body {
     gap: 3em;
 }
 
-.full-width, app-toolbar {
+.full-width,
+app-toolbar {
     width: 100%;
 }
 
@@ -118,6 +142,7 @@ body {
 .text-center {
     text-align: center;
 }
+
 .text-end {
     text-align: end;
 }
@@ -147,8 +172,8 @@ body {
 // material
 
 .mat-mdc-text-field-wrapper {
-    height: unset !important; 
-    flex: unset !important; 
+    height: unset !important;
+    flex: unset !important;
 }
 
 
@@ -192,6 +217,27 @@ body {
 
 .mat-mdc-paginator-container {
     background-color: white !important;
+}
+
+// Table
+
+th:first-child {
+    border-radius: 10px 0 0 10px !important;
+    background-color: $app-secondary !important;
+}
+
+// Set border-radius on the top-right and bottom-right of the last table data on the table row
+// th {
+//     color: white !important;
+// }
+
+th:last-child {
+    border-radius: 0 10px 10px 0 !important;
+    background-color: $app-secondary !important;
+}
+
+.mat-mdc-table .mdc-data-table__header-row {
+    background-color: $app-secondary;
 }
 
 // Material responsive

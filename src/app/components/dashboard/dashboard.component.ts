@@ -7,6 +7,7 @@ import { MembersComponent } from '../members/members.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements AfterViewInit {
+  displayedColumns: string[] = ['member', 'month', 'date', 'total', 'status', 'action'];
+  dataSource: any;
   annualMonths: string[] = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November',
     'December'];
   newMembersOptions: string[] = ['Month', '2 Months', '3 Months'];
@@ -21,6 +24,9 @@ export class DashboardComponent implements AfterViewInit {
   totalMembers: any[] = [];
   newMembers: any[] = [];
   allPayments: any;
+  paymentsYearsArr: any = []
+  currentYear: any = new Date().getFullYear();
+  yearFormGroup: FormGroup;
   totalMembersPayments: any = {
     paid: 0,
     overdue: 0
@@ -29,16 +35,20 @@ export class DashboardComponent implements AfterViewInit {
   paymentPlansFormGroup!: FormGroup;
   isEddingPlans: boolean = false;
   paymentPlans: any[] = [];
-  paymentsPerMonth: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  paymentsPerMonth: any;
   selectedNav: any = {
     label: 'Dashboard',
     icon: 'dashboard'
   }
   constructor(private dialog: MatDialog, private router: Router, private sharedService: SharedService,
     private snackbar: MatSnackBar, private cd: ChangeDetectorRef) {
-    this.getPaymentPlans();
+    this.yearFormGroup = new FormGroup({
+      year: new FormControl(this.currentYear)
+    })
+    this.getStatisticsData();
     this.totalMembers = this.sharedService.getStorage('gymMembers', 'local');
-    this.allPayments = this.sharedService.getStorage('allPayments', 'local');
+    this.dataSource = new MatTableDataSource<any>(this.allPayments.reverse().slice(0, 3));;
+    this.getPaymentPlans();
     this.totalMembers.forEach((member: any) => {
       if (new Date(member.joinDate).getFullYear() === new Date().getFullYear()) {
         if (new Date(member.joinDate).getMonth() > new Date().getMonth() - 1) {
@@ -46,48 +56,67 @@ export class DashboardComponent implements AfterViewInit {
         }
       }
     })
-    this.managePayments();
-    this.annualMonths.forEach((month: any, indx: any) => {
-      const monthPayments = this.allPayments.filter((payment: any) => payment.monthForPayment === month);
-      if (monthPayments.length > 0) {
-        monthPayments.forEach((payment: any) => {
-          this.paymentsPerMonth[indx] += Number(payment.amout);
-        })
-      }
-    })
+    this.managePayments(2024);
+    this.getStatisticsData();
   }
 
   ngAfterViewInit(): void {
     this.cd.detectChanges();
   }
 
-  managePayments() {
+  getStatisticsData() {
+    this.allPayments = this.sharedService.getStorage('allPayments', 'local');
+    this.dataSource = new MatTableDataSource<any>(this.allPayments.reverse().slice(0, 3));
+    this.paymentsPerMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    this.annualMonths.forEach((month: any, indx: any) => {
+      const monthPayments = this.allPayments.filter((payment: any) => payment.monthForPayment === month);
+      if (monthPayments.length > 0) {
+        monthPayments.forEach((payment: any) => {
+          if (new Date(payment.dateOfPayment).getFullYear() === this.currentYear) {
+            this.paymentsPerMonth[indx] += Number(payment.amout);
+          }
+          if (!this.paymentsYearsArr.includes(new Date(payment.dateOfPayment).getFullYear())) this.paymentsYearsArr.push(new Date(payment.dateOfPayment).getFullYear());
+        })
+      }
+    })
+    this.sharedService.triggerPaymentUpdates(this.paymentsPerMonth);
+  }
+
+  managePayments(year: any) {
+    this.totalMembersPayments.paid = 0;
     // change amount
-    this.allPayments.forEach((payment: any) => this.totalMembersPayments.paid += payment.amout)
+    this.allPayments.forEach((payment: any) => {
+      if (new Date(payment.dateOfPayment).getFullYear() !== year) {
+        console.log("payment", payment);
+        return;
+      };
+      this.totalMembersPayments.paid += payment.amout;
+    })
 
     // overdue payments
-    this.totalMembers.forEach((member: any) => {
-      let annualOverduePayments = 0;
-      const isFound = this.allPayments.filter((payment: any) => payment.member === member.email)
-      const paymentMonths = this.knowStartPayingMonth(member.joinDate)
-      paymentMonths.forEach((month: any) => {
-        const isPayedMonth = isFound.find((payment: any) => payment.monthForPayment === month);
-        // not found
-        if (!isPayedMonth) {
-          this.annualMonths.forEach((_month: any, indx: any) => {
-            if (_month === month) {
-              if (indx > new Date().getMonth()) {
-                return;
-              }
-              // make dynamic with months plans
-              annualOverduePayments += Number(this.paymentPlans[0].perMonth);
-            }
-          })
-        }
-      })
-      this.totalMembersOverduePayments += annualOverduePayments;
-    })
-    this.totalMembersPayments.overdue = this.totalMembersOverduePayments;
+    // this.totalMembers.forEach((member: any) => {
+    //   let annualOverduePayments = 0;
+    //   const isFound = this.allPayments.filter((payment: any) => payment.member === member.email)
+    //   const paymentMonths = this.knowStartPayingMonth(member.joinDate)
+    //   paymentMonths.forEach((month: any) => {
+    //     const isPayedMonth = isFound.find((payment: any) => payment.monthForPayment === month);
+    //     // not found
+    //     if (!isPayedMonth) {
+    //       this.annualMonths.forEach((_month: any, indx: any) => {
+    //         if (_month === month) {
+    //           if (indx > new Date().getMonth()) {
+    //             return;
+    //           }
+    //           console.log("this.paymentPlans", this.paymentPlans)
+    //           // make dynamic with months plans
+    //           annualOverduePayments += Number(this.paymentPlans[0].perMonth);
+    //         }
+    //       })
+    //     }
+    //   })
+    //   this.totalMembersOverduePayments += annualOverduePayments;
+    // })
+    // this.totalMembersPayments.overdue = this.totalMembersOverduePayments;
   }
 
   knowStartPayingMonth(memberJoinDate: any) {
@@ -243,11 +272,16 @@ export class DashboardComponent implements AfterViewInit {
       this.snackbar.open('You need to add members', 'Ok', { duration: 3000 });
       return;
     }
-    this.dialog.open(MembersComponent, {
+    const dialogRef = this.dialog.open(MembersComponent, {
       data: {
         members: this.newMembers,
         filteredType: this.selctedNewMembersOptions
       }
+    })
+
+    dialogRef.afterClosed().subscribe(() => {
+      // Refresh displayed data
+      this.getStatisticsData();
     })
   }
 
@@ -269,8 +303,16 @@ export class DashboardComponent implements AfterViewInit {
     paymentPlans = this.paymentPlansFormGroup.value;
     this.sharedService.setStorage('paymentPlans', paymentPlans, 'local');
     this.getPaymentPlans();
-    this.managePayments();
     this.snackbar.open('Payment plans saved successfully', 'Ok', { duration: 3000 });
     this.isEddingPlans = false;
+  }
+
+  filterTotalPayments(year: any) {
+    this.managePayments(year);
+    this.sharedService.triggerPaymentsTotalUpdates(this.totalMembersPayments)
+  }
+
+  filterYearlyPayments(year: any) {
+    this.sharedService.triggerPaymentUpdates(this.sharedService.calculateYearPayments(this.annualMonths, this.allPayments, year));
   }
 }

@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { PaymentComponent } from '../payment/payment.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-payments',
@@ -35,17 +36,22 @@ export class PaymentsComponent implements AfterViewInit {
   }, {
     month: 'December'
   }]
+  displayedColumns: string[] = ['member', 'month', 'date', 'total', 'status', 'paymentType'];
+  dataSource: any;
   currentYearMembers: any[] = [];
   nowFullYear: any = new Date().getFullYear();
   currentPageIndex: number = 0;
   membersToShowOnCurrentPage: any[] = [];
   totalItems: number = 0;
   yearFormGroup: FormGroup;
+  allPayments: any;
   constructor(private sharedService: SharedService, private dialog: Dialog) {
     this.yearFormGroup = new FormGroup({
       year: new FormControl(this.nowFullYear)
     })
     const allMembers = this.sharedService.getStorage('gymMembers', 'local');
+    this.allPayments = this.sharedService.getStorage('allPayments', 'local');
+    this.dataSource = new MatTableDataSource<any>(this.allPayments.reverse());;
     const allPayments = this.sharedService.getStorage('allPayments', 'local');
     allMembers.forEach((member: any) => {
       if (new Date(member.joinDate).getFullYear() === this.nowFullYear) {
@@ -58,11 +64,12 @@ export class PaymentsComponent implements AfterViewInit {
         }
       }
     })
-    this.updateItemsToShow(12);
+    console.log("allPayments", this.allPayments)
+    this.updateItemsToShow(10);
   }
   selectedNav: any = {
-    label: 'Payments',
-    icon: 'payment'
+    label: 'Transactions',
+    icon: 'trending_up'
   }
 
   ngAfterViewInit(): void {
@@ -70,15 +77,25 @@ export class PaymentsComponent implements AfterViewInit {
 
   // Method to update items to show on the current page
   updateItemsToShow(itemsPerPage: any) {
-    this.totalItems = this.currentYearMembers.length;
+    this.totalItems = this.allPayments.length;
     const startIndex = this.currentPageIndex * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    this.membersToShowOnCurrentPage = this.currentYearMembers.slice(startIndex, endIndex);
+    this.dataSource = new MatTableDataSource<any>(this.allPayments.slice(startIndex, endIndex));
   }
 
   onPageChange(e: any) {
     this.currentPageIndex = e.pageIndex;
     this.updateItemsToShow(e.pageSize);
+  }
+
+  applyFilter(event: Event) {
+    console.log(event)
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.totalItems = this.dataSource.filteredData.length;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   seePayment(member: any) {

@@ -1,15 +1,26 @@
 $app-secondary: #3f51b5;
 
+.light-grey {
+    color: #c8c8ce;
+}
+
+.color-white {
+    color: white;
+}
+
 .main-container {
     position: relative;
     height: 100%;
 
     form {
         height: calc(100dvh - 48px);
+        padding: 1em;
+        box-sizing: border-box;
     }
 
-    .mat-elevation-z8 {
-        overflow-y: auto;
+    .table {
+        max-width: 100%;
+        overflow-x: auto;
     }
 
     .no-members-err {
@@ -29,10 +40,28 @@ $app-secondary: #3f51b5;
         }
     }
 
+    .member-img {
+        background-size: cover;
+        height: 36px;
+        width: 39px;
+        border-radius: 50%;
+
+        img {
+            height: 25px;
+        }
+    }
+
+    .male-bg-img {
+        background-image: url('../../../assets/images/male-profile.png');
+    }
+
+    .female-bg-img {
+        background-image: url('../../../assets/images/female-profile.png');
+    }
+
     .search-container {
         position: relative;
         margin-left: 1em;
-        margin-top: .5em;
 
         .search-icon {
             position: absolute;
@@ -43,13 +72,13 @@ $app-secondary: #3f51b5;
     }
 
     .add-member {
-        // padding: 30px;
-        height: 65px;
-        width: 65px;
+        height: 54px;
+        width: 54px;
+        color: white;
         background-color: $app-secondary;
         border-radius: 50%;
         position: absolute;
-        bottom: 5px;
+        bottom: 10px;
         left: 20px;
     }
 
@@ -107,13 +136,13 @@ mat-icon {
         }
     }
 
-    .mat-elevation-z8 {
-        overflow-x: auto;
-        background-color: white;
-    }
-
     .filtered-members {
         margin-right: 0em !important;
         font-size: 20px;
+    }
+
+    table {
+        max-width: 500px;
+        overflow-x: auto;
     }
 }

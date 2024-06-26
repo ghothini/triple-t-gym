@@ -35,17 +35,29 @@ export class PaymentComponent {
     paymentPlans = JSON.parse(paymentPlans)
     if (paymentPlans) {
       this.paymentFormGroup = new FormGroup({
+        membershipNo: new FormControl(selectedMember.membershipNo, [Validators.required]),
         member: new FormControl(selectedMember.email, [Validators.required]),
         monthForPayment: new FormControl(this.selectedPaymentMonth, [Validators.required]),
         dateOfPayment: new FormControl('', [Validators.required]),
-        amout: new FormControl(Number(paymentPlans.month), [Validators.required])
+        amout: new FormControl(Number(paymentPlans.month), [Validators.required]),
+        gender: new FormControl(selectedMember.gender, [Validators.required]),
+        memberName: new FormControl(selectedMember.fullName, [Validators.required]),
+        joinDate: new FormControl(selectedMember.joinDate, [Validators.required]),
+        status: new FormControl('active', [Validators.required]),
+        paymentType: new FormControl('Cash', [Validators.required])
       })
     } else {
       this.paymentFormGroup = new FormGroup({
+        membershipNo: new FormControl(selectedMember.membershipNo, [Validators.required]),
         member: new FormControl(selectedMember.email, [Validators.required]),
         monthForPayment: new FormControl(this.selectedPaymentMonth, [Validators.required]),
         dateOfPayment: new FormControl('', [Validators.required]),
-        amout: new FormControl('', [Validators.required])
+        amout: new FormControl('', [Validators.required]),
+        gender: new FormControl(selectedMember.gender, [Validators.required]),
+        memberName: new FormControl(selectedMember.fullName, [Validators.required]),
+        joinDate: new FormControl(selectedMember.joinDate, [Validators.required]),
+        status: new FormControl('active', [Validators.required]),
+        paymentType: new FormControl('Cash', [Validators.required])
       })
     }
     this.payedMonthsFormGroup = new FormGroup({

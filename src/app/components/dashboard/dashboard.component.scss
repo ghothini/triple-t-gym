@@ -1,4 +1,9 @@
 $blue: #3f51b5;
+$light-grey: #c8c8ce;
+
+.light-grey {
+    color:$light-grey;
+}
 
 .color-black {
     color: black !important;
@@ -19,6 +24,9 @@ $blue: #3f51b5;
 
 .main-container {
     padding: 1em;
+    max-height: calc(100dvh - 80px);
+    overflow-y: auto;
+
     .charts-container {
         .chart-container {
             padding: 10px;
@@ -27,6 +35,54 @@ $blue: #3f51b5;
         }
     }
 
+    .members-total-no {
+        background-color: $blue;
+        border-radius: 50%;
+        color: white;
+        height: 30px;
+        width: 30px;
+    }
+
+    .member-img {
+        background-size: cover;
+        height: 36px;
+        width: 39px;
+        border-radius: 50%;
+
+        img {
+            height: 25px;
+        }
+    }
+
+    .male-bg-img {
+        background-image: url('../../../assets/images/male-profile.png');
+    }
+
+    .female-bg-img {
+        background-image: url('../../../assets/images/female-profile.png');
+    }
+
+    .transactions-mat-card {
+        height: 253px;
+        flex-direction: column !important;
+        .status {
+            width: 63px;
+            height: 30px;
+            border-radius: 6px;
+            background-color: $blue;
+            color: white;
+            // border: 1px solid black;
+        }
+
+        .status-inactive {
+            background-color: rgba(255, 99, 132, 0.6) !important;
+        }
+
+        .table {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+    }
 }
 
 .outer-container {
@@ -34,11 +90,15 @@ $blue: #3f51b5;
         font-size: x-large;
         font-weight: 500;
     }
+
+    .members-overview-container {
+        width: 342px;
+    }
 }
 
 .plans-controls {
     position: relative;
-    height: 92px;
+    // height: 92px;
 
     .plans-error-msg {
         position: absolute;
@@ -118,6 +178,10 @@ mat-icon {
 }
 
 @media screen and (max-width: 960px) {
+
+    .members-container {
+        flex-direction: column;
+    }
     .total-members {
         width: 121px;
         text-align: start;
@@ -128,7 +192,11 @@ mat-icon {
         gap: 0;
     }
 
-    .outer-container {
+    .transactions-mat-card {
+        height: 295px !important;
+    }
+
+    .outer-container, .charts-container {
         flex-direction: column;
     }
 

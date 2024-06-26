@@ -1,15 +1,16 @@
-<div class="flex column gap-1em padding-10px">
+<div class="flex column padding-8px">
     <div class="flex gap-1em a-center">
-        <mat-icon class="add-person-icon">person_add</mat-icon>
-        <h2 class="title no-margin">{{edittingMember ? 'Edit': 'Add'}} Member</h2>
-            </div>
+        <!-- <mat-icon class="add-person-icon">person_add</mat-icon>
+        <h2 class="title no-margin">{{edittingMember ? 'Edit': 'Add'}} Member</h2> -->
+        <h2 class="no-margin">Personal Details</h2>
+    </div>
     <form [formGroup]="addingMemberFormGroup" class="flex column">
         <div class="flex a-center fields-container gap-1em">
             <mat-form-field class="flex-1">
-                <mat-label>Name</mat-label>
+                <mat-label>Names</mat-label>
                 <input formControlName="fullName" type="text" matInput placeholder="Names">
                 <mat-error *ngIf="addingMemberFormGroup.get('fullName')?.hasError('required')">
-                    Name is <strong>required</strong>
+                    Names are <strong>required</strong>
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="flex-1">
@@ -54,25 +55,26 @@
             </mat-form-field>
         </div>
         <div class="flex a-center gap-1em fields-container last">
-                <mat-form-field class="flex-1">
-                    <mat-label>Joindate</mat-label>
-                    <input matInput formControlName="joinDate" readonly [min]="todayDate" (focus)="picker.open()"
-                        [matDatepicker]="picker">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="addingMemberFormGroup.get('joinDate')?.hasError('required')">
-                        Joindate is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
+            <mat-form-field class="flex-1">
+                <mat-label>Joindate</mat-label>
+                <input matInput formControlName="joinDate" readonly [min]="todayDate" (focus)="picker.open()"
+                    [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="addingMemberFormGroup.get('joinDate')?.hasError('required')">
+                    Joindate is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
             <mat-form-field class="flex-1">
                 <mat-label>Membership Number</mat-label>
                 <input readonly formControlName="membershipNo" type="text" matInput>
             </mat-form-field>
         </div>
-        
+
         <div class="flex gap-1em a-center">
-            <mat-checkbox *ngIf="!edittingMember" (click)="changeMemberType()" class="example-margin">Late registration?</mat-checkbox>
+            <mat-checkbox *ngIf="!edittingMember" (click)="changeMemberType()" class="example-margin">Late
+                registration?</mat-checkbox>
         </div>
         <div class="flex j-end">
             <button (click)="submit()" color="primary" mat-raised-button>{{edittingMember ? 'Save' : 'Submit'}}</button>

@@ -4,50 +4,123 @@
         <div class="flex outer-container gap-2em">
             <div class="flex column gap-05em">
                 <p class="no-margin color-secondary welcom-txt">Welcome back!</p>
-                <mat-card class="flex padding-5px a-center">
-                    <div class="flex column">
-                        <h2 class="total-members no-margin pointer">Total Members</h2>
-                        <mat-icon class="people-icon">people</mat-icon>
-                    </div>
-                    <div class="flex column space-between">
-                        <div class="members-total-no flex center-center">
-                            <h2 class="no-margin">{{totalMembers.length}}</h2>
+                <div class="members-container flex gap-05em a-center">
+                    <mat-card class="members-overview-container flex padding-5px a-center">
+                        <div class="flex column">
+                            <h2 class="total-members no-margin pointer">Total Members</h2>
+                            <mat-icon class="people-icon">people</mat-icon>
                         </div>
-                        <small (click)="seeAllMembers()" class="span pointer">view all</small>
-                    </div>
-                </mat-card>
-                <div class="flex a-center full-width">
-                    <mat-card class="flex column padding-5px full-width ">
-                        <div class="flex gap-2em a-center filtering-container">
-                            <div class="flex column">
-                                <h2 class="total-members no-margin pointer">New Members</h2>
-
-                                <mat-icon class="people-icon">people</mat-icon>
+                        <div class="flex column space-between">
+                            <div class="members-total-no flex center-center">
+                                <h2 class="no-margin">{{totalMembers.length}}</h2>
                             </div>
-                            <div class="flex gap-1em">
-                                <div class="flex column">
-                                    <div class="members-total-no flex center-center">
-                                        <h2 class="no-margin">{{newMembers.length}}</h2>
-                                    </div>
-                                    <small (click)="showFilteredNewMembers()" class="span pointer">view all</small>
-                                </div>
-                                <div title="Recent month(s)" class="flex gap-1em a-center pointer"
-                                    [matMenuTriggerFor]="menu">
-                                    <div class="flex a-center filter-members">
-                                        <mat-icon>today</mat-icon>
-                                        <p class="no-margin">{{selctedNewMembersOptions}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <mat-menu class="absolute" #menu="matMenu">
-                                <button mat-menu-item (click)="changeNewMemberFilterOption(indx)"
-                                    *ngFor="let newMemberFilterOption of newMembersOptions; let indx = index">{{newMemberFilterOption
-                                    |
-                                    titlecase}}</button>
-                            </mat-menu>
+                            <small (click)="seeAllMembers()" class="span pointer">view all</small>
                         </div>
                     </mat-card>
+                    <div class="flex a-center full-width">
+                        <mat-card class="flex column padding-5px full-width ">
+                            <div class="flex gap-2em a-center filtering-container">
+                                <div class="flex column">
+                                    <h2 class="total-members no-margin pointer">New Members</h2>
+
+                                    <mat-icon class="people-icon">people</mat-icon>
+                                </div>
+                                <div class="flex gap-1em">
+                                    <div class="flex column">
+                                        <div class="members-total-no flex center-center">
+                                            <h2 class="no-margin">{{newMembers.length}}</h2>
+                                        </div>
+                                        <small (click)="showFilteredNewMembers()" class="span pointer">view all</small>
+                                    </div>
+                                    <div title="Recent month(s)" class="flex gap-1em a-center pointer"
+                                        [matMenuTriggerFor]="menu">
+                                        <div class="flex a-center filter-members">
+                                            <mat-icon>today</mat-icon>
+                                            <p class="no-margin">{{selctedNewMembersOptions}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <mat-menu class="absolute" #menu="matMenu">
+                                    <button mat-menu-item (click)="changeNewMemberFilterOption(indx)"
+                                        *ngFor="let newMemberFilterOption of newMembersOptions; let indx = index">{{newMemberFilterOption
+                                        |
+                                        titlecase}}</button>
+                                </mat-menu>
+                            </div>
+                        </mat-card>
+                    </div>
                 </div>
+                <!-- Recent Transactions -->
+                <mat-card class="flex transactions-mat-card padding-5px gap-05em">
+                    <p class="no-margin">Recent Payments</p>
+                    <div class="table">
+                        <table mat-table [dataSource]="dataSource">
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="member">
+                                <th mat-header-cell *matHeaderCellDef> Member </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div class="flex a-center gap-05em">
+                                        <div [ngClass]="{'male-bg-img': element.gender === 'Male','female-bg-img': element.gender === 'Female'}"
+                                            class="member-img flex center-center">
+                                        </div>
+                                        <div class="flex column space-around">
+                                            <strong>{{element.memberName}} </strong>
+                                            <small class="no-margin light-grey">{{element.membershipNo}}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                            </ng-container>
+    
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="month">
+                                <th mat-header-cell *matHeaderCellDef> Month </th>
+                                <td mat-cell *matCellDef="let element"> {{element.monthForPayment}} </td>
+                            </ng-container>
+    
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="date">
+                                <th mat-header-cell *matHeaderCellDef> Date </th>
+                                <td mat-cell *matCellDef="let element"> {{element.dateOfPayment | date}} </td>
+                            </ng-container>
+    
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="total">
+                                <th mat-header-cell *matHeaderCellDef> Total </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div class="flex column">
+                                        <strong>R{{element.amout}}</strong>
+                                        <small class="no-margin light-grey">{{element.paymentType}}</small>
+                                    </div>
+                                </td>
+                            </ng-container>
+    
+                            <!-- Status Column -->
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef> Status </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div [class.status-inactive]="element.status === 'inactive'"
+                                        class="status flex center-center">
+                                        {{element.status | titlecase}}
+                                    </div>
+                                </td>
+                            </ng-container>
+    
+                            <!-- Action Column -->
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef> Action </th>
+                                <td mat-cell *matCellDef="let element"> <mat-icon>view</mat-icon> </td>
+                            </ng-container>
+    
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+                            <!-- Row shown when there is no recent payments. -->
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="4">0 transactions</td>
+                            </tr>
+                        </table>
+                    </div>
+                </mat-card>
             </div>
             <div class="flex column center-center">
                 <h2 class="no-margin">Your Payment Plan</h2>
@@ -71,6 +144,14 @@
             <mat-card class="flex column gap-05em chart-container">
                 <h2 class="no-margin text-center">Yearly payments</h2>
                 <app-bar [paymentsPerMonth]="paymentsPerMonth"></app-bar>
+                <div class="flex filter-months a-end gap-05em">
+                    <mat-form-field [formGroup]="yearFormGroup">
+                        <mat-label>Year</mat-label>
+                        <mat-select formControlName="year">
+                            <mat-option (click)="filterYearlyPayments(year)" *ngFor="let year of paymentsYearsArr" [value]="year">{{year}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </mat-card>
             <mat-card class="chart-container flex a-center">
                 <h2 class="no-margin text-center">Business summary</h2>
@@ -109,6 +190,14 @@
                             </button>
                         </div>
                     </div>
+                </div>
+                <div class="flex full-width filter-months a-end gap-05em">
+                    <mat-form-field [formGroup]="yearFormGroup">
+                        <mat-label>Year</mat-label>
+                        <mat-select formControlName="year">
+                            <mat-option (click)="filterTotalPayments(year)" *ngFor="let year of paymentsYearsArr" [value]="year">{{year}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
             </mat-card>
         </div>

@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 export class SharedService {
   sideNavSubject = new Subject<any>();
   paymentsSubject = new Subject<any>();
+  paymentsTotalSubject = new Subject<any>();
   constructor() { }
 
   getStorage(key: any, storage: any) {
@@ -19,8 +20,13 @@ export class SharedService {
     return;
   }
 
-  triggerPaymentUpdates() {
-    this.paymentsSubject.next('changed');
+  triggerPaymentUpdates(paymentsPerMonthArr: any) {
+    this.paymentsSubject.next(paymentsPerMonthArr);
+    return;
+  }
+
+  triggerPaymentsTotalUpdates(paymentsObj: any) {
+    this.paymentsTotalSubject.next(paymentsObj);
     return;
   }
 
@@ -32,7 +38,28 @@ export class SharedService {
     return this.paymentsSubject.asObservable();
   }
 
+  watchpaymentsTotalChanges(): Observable<any> {
+    return this.paymentsTotalSubject.asObservable();
+  }
+
   setStorage(key: any, value: any, storage: any) {
     return storage === 'session' ? sessionStorage.setItem(key, JSON.stringify(value)) : localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  calculateYearPayments(annualMonths: any, allPayments: any, filterYear: any) {
+    let paymentsPerMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let paymentsYearsArr: any = [];
+    annualMonths.forEach((month: any, indx: any) => {
+      const monthPayments = allPayments.filter((payment: any) => payment.monthForPayment === month);
+      if (monthPayments.length > 0) {
+        monthPayments.forEach((payment: any) => {
+          if (new Date(payment.dateOfPayment).getFullYear() !== filterYear) {
+            return;
+          }
+          paymentsPerMonth[indx] += Number(payment.amout);
+        })
+      }
+    })
+    return paymentsPerMonth;
   }
 }

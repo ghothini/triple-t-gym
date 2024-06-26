@@ -13,7 +13,7 @@ const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
   path: 'landing', component: LandingComponent, children: [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'members', component: MembersComponent },
-    { path: 'payments', component: PaymentsComponent }]
+    { path: 'transactions', component: PaymentsComponent }]
 },
 { path: '**', component: PageNotFoundComponent }];
 

@@ -9,16 +9,21 @@ import { SharedService } from 'src/app/services/shared.service';
 export class PieComponent implements AfterViewInit {
   pieData!: any;
   pieChartDatasets: any;
-  pieChartLabels: any = ['Paid', 'Overdue'];
+  pieChartLabels: any = ['Paid'];
 
   @Input() totalMembersPayments: any;
 
-  constructor(private cd: ChangeDetectorRef) {
+  constructor(private cd: ChangeDetectorRef, private sharedService: SharedService) {
+    this.sharedService.watchpaymentsTotalChanges().subscribe((paymentsTotalObj) => {
+      this.pieChartDatasets = [{
+        data: [paymentsTotalObj.paid]
+      }]
+    })
   }
 
   ngAfterViewInit() {
     this.pieChartDatasets = [{
-      data: [this.totalMembersPayments.paid, this.totalMembersPayments.overdue]
+      data: [this.totalMembersPayments.paid]
     }]
     this.cd.detectChanges();
   }

@@ -10,10 +10,9 @@
                 </div>
                 <hr class="hr">
                 <div class="flex column gap-1em m-t-2em">
-                    <div *ngFor="let menu of menuItems;let indx = index" class="flex a-center gap-1em pointer">
+                    <div [routerLink]="menu.route" (click)="selectMenu(indx)" *ngFor="let menu of menuItems;let indx = index" [class.selected-menu-item]="selectedMenu === indx" class="menu-item flex a-center gap-1em pointer">
                         <mat-icon>{{menu.icon}}</mat-icon>
-                        <p (click)="selectMenu(indx)" [class.selected-menu]="selectedMenu === indx"
-                            [routerLink]="menu.route" class="no-margin p">{{menu.label}}</p>
+                        <p class="no-margin p">{{menu.label}}</p>
                     </div>
                 </div>
                 <div class="flex column gap-05em a-center absolute logout">

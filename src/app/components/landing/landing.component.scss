@@ -15,14 +15,25 @@ mat-toolbar {
 .sideNav {
     .p {
         font-size: larger;
+    }
+
+    .menu-item {
+        width: 177px;
+        height: 40px;
+        border-radius: 7px;
+        padding-left: .5em;
+        color: #c8c8ce;
+        outline: none;
 
         &:hover {
-            text-decoration: underline solid $app-secondary;
+            background-color: $app-secondary;
+            color: white !important;
         }
+    }
 
-        &:focus {
-            outline: none;
-        }
+    .selected-menu-item {
+        background-color: $app-secondary;
+        color: white !important;
     }
 
     .role {
@@ -41,10 +52,6 @@ mat-toolbar {
     .logout {
         bottom: 0;
     }
-}
-
-.selected-menu {
-    text-decoration: underline solid $app-secondary;
 }
 
 .hr {

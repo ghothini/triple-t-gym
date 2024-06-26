@@ -1,6 +1,6 @@
 <app-toolbar [component]="selectedNav"></app-toolbar>
 <div class="flex column  main-container gap-1em">
-    <div class="flex keys-main-container gap-05em center-center column">
+    <!-- <div class="flex keys-main-container gap-05em center-center column">
         <div [formGroup]="yearFormGroup" class="flex filter-months gap-05em a-center">
             <mat-form-field>
                 <mat-label>Year & COLOR KEYS</mat-label>
@@ -17,10 +17,73 @@
                 <small>{{keyAndColor.month}}</small>
             </div>
         </div>
+    </div> -->
+    <div class="search-container">
+        <input class="search" type="text" (keyup)="applyFilter($event)" #input placeholder="Search ...">
+        <mat-icon class="search-icon absolute">search</mat-icon>
     </div>
-    <div [class.height-649px]="membersToShowOnCurrentPage.length < 1" class="flex payment-profile-container gap-1em flex-1 wrap">
-        <h2 *ngIf="membersToShowOnCurrentPage.length < 1" class="color-red no-margin">0 payments added.</h2>
-        <mat-card *ngFor="let member of membersToShowOnCurrentPage" class="payment-profile flex column">
+    <div class="flex payment-profile-container gap-1em">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="member">
+                <th mat-header-cell *matHeaderCellDef> Member </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="flex a-center gap-05em">
+                        <div [ngClass]="{'male-bg-img': element.gender === 'Male','female-bg-img': element.gender === 'Female'}" class="member-img flex center-center">
+                        </div>
+                        <div class="flex column space-around">
+                            <small class="no-margin"><strong>{{element.memberName}} </strong></small>
+                            <small class="no-margin light-grey">{{element.joinDate | date}}</small>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="month">
+                <th mat-header-cell *matHeaderCellDef> Month </th>
+                <td mat-cell *matCellDef="let element"> {{element.monthForPayment}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.dateOfPayment | date}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef> Total </th>
+                <td mat-cell *matCellDef="let element"> R{{element.amout}} </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <!-- Payment Type Column -->
+            <ng-container matColumnDef="paymentType">
+                <th mat-header-cell *matHeaderCellDef> Payment Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.paymentType}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">0 search results matching {{input.value}}</td>
+            </tr>
+        </table>
+
+
+        <!-- <mat-card *ngFor="let member of membersToShowOnCurrentPage" class="payment-profile flex column">
             <div class="top flex center-center">
                 <div class="flex img-container center-center">
                     <img class="member-img pointer"
@@ -46,10 +109,10 @@
                     src="https://img.freepik.com/premium-vector/card-payment-icon-bank-terminal-card-payment_256722-639.jpg"
                     alt="Add payment image">
             </div>
-        </mat-card>
+        </mat-card> -->
     </div>
-    <div class="flex flex-1 a-end j-end full-width">
-        <mat-paginator (page)="onPageChange($event)" #paginator [length]="totalItems" [pageSizeOptions]="[12, 25, 100]"
+    <div class="flex a-end j-end full-width">
+        <mat-paginator (page)="onPageChange($event)" #paginator [length]="totalItems" [pageSizeOptions]="[10, 25, 100]"
             aria-label="Select page">
         </mat-paginator>
     </div>
