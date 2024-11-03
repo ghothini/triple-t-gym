@@ -1,0 +1,58 @@
+<div class="main-container flex column">
+    <div class="title-container">
+        <p class="no-margin  f-weight-500">{{selectedReportType}}</p>
+    </div>
+    <div class="flex column">
+        <div class="mid-container flex column gap-2em">
+            <p class="no-margin f-weight-500">Apply Filters</p>
+            <form [formGroup]="membersStatusFormGroup">
+                <!-- Transactions Report -->
+                <div *ngIf="selectedReportType === 'Transactions'" class="flex column">
+                    <div class="flex column">
+                        <p class="no-margin color-l-purple">Date</p>
+                        <div class="flex gap-1em a-center">
+                            <!-- Start Date -->
+                            <mat-form-field appearance="fill">
+                                <mat-label>Start Date</mat-label>
+                                <input matInput readonly (focus)="picker.open()" [matDatepicker]="picker">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <p class="no-margin">to</p>
+                            <!-- End Date -->
+                            <mat-form-field appearance="fill">
+                                <mat-label>End Date</mat-label>
+                                <input matInput readonly (focus)="picker2.open()" [matDatepicker]="picker2">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="flex column">
+                        <p class="no-margin color-l-purple">Status</p>
+                        <!-- Payment Status -->
+                        <div class="flex column form-field relative">
+                            <input type="text" readonly value="Active">
+                            <mat-icon class="absolute">arrow_drop_down</mat-icon>
+                        </div>
+                    </div>
+                </div>
+                <!-- Members Report -->
+                <div *ngIf="selectedReportType !== 'Transactions'" class="flex column">
+                    <p class="no-margin color-l-purple">Members Status</p>
+                    <!-- Members Status -->
+                    <div class="flex column form-field relative">
+                        <input type="text" readonly value="Total Members" formcontrolname="status">
+                        <mat-icon class="absolute">arrow_drop_down</mat-icon>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="action-container flex a-center j-end gap-1em">
+            <div (click)="selectAction(indx)" *ngFor="let button of actionButtons; let indx = index"
+                class="btn pointer flex center-center">
+                <p class="no-margin">{{button}}</p>
+            </div>
+        </div>
+    </div>
+</div>

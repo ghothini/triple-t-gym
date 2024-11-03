@@ -1,0 +1,31 @@
+<div class="main-container full-dvh full-width flex">
+    <div class="half-width flex column gap-2em center-center">
+        <div class="flex full-width column gap-1em center-center">
+            <img class="img-logo" src="../../../../assets/images/triple-title-logo.png" alt="">
+            <h2 class="no-margin">Continue with your Email Address</h2>
+            <p class="no-margin">We'll check if your Email exists, else help you create an account</p>
+            <form [formGroup]="emailAuthFormGroup" class="half-width flex column border-box">
+                <!-- Email -->
+                <div class="flex column form-field">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email">
+                    <small class="color-red no-margin"
+                        *ngIf="emailAuthFormGroup.get('email')?.hasError('required') && emailAuthFormGroup.get('email')?.touched">Email
+                        is
+                        <strong>required</strong></small>
+                    <small class="color-red no-margin"
+                        *ngIf="emailAuthFormGroup.get('email')?.hasError('pattern')">Enter
+                        a <strong>valid</strong> email address</small>
+                </div>
+                <button (click)="submit()" class="btn pointer">
+                    <p class="no-margin">Continue</p>
+                </button>
+            </form>
+        </div>
+        <small>By signing up, you agree to Triple T <a href="">Terms of Service</a> and <a href="">Privacy
+                Policy</a>.</small>
+    </div>
+    <div class="half-width bg-white flex center-center">
+        <img class="logo-icon-img" src="../../../../assets/images/triple-t-circle-logo.png" alt="">
+    </div>
+</div>

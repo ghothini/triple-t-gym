@@ -1,27 +1,34 @@
 <div class="flex column full-height">
     <mat-sidenav-container class="full-height">
         <mat-sidenav #sideNav mode="over" opened>
-            <div class="full-height a-center flex column sideNav relative">
-                <div class="flex column">
-                    <!-- <img src="../../../assets/images/profile.png" alt="Profile image"> -->
-                    <img class="logo" src="../../../assets/images/triple-t-circle-logo-gw.png"
-                        alt="Triple t logo image">
-                    <p class="no-margin text-center role" title="Signed in role">{{currentUser.role | titlecase}}</p>
+            <div class="full-height flex column sideNav relative gap-1em">
+                <div class="business-name-container flex center-center">
+                    <img class="triple-icon-img" src="../../../assets/images/triple-icon.png" alt="">
+                    <h2 class="text-center no-margin">{{currentUser.businessName | titlecase}}</h2>
                 </div>
                 <hr class="hr">
-                <div class="flex column gap-1em m-t-2em">
-                    <div [routerLink]="menu.route" (click)="selectMenu(indx)" *ngFor="let menu of menuItems;let indx = index" [class.selected-menu-item]="selectedMenu === indx" class="menu-item flex a-center gap-1em pointer">
+                <div class="flex column gap-05em">
+                    <div [routerLink]="item.route" (click)="selectMenu(indx)"
+                        *ngFor="let item of menuItems;let indx = index"
+                        class="menu-item flex a-center gap-05em pointer">
+                        <img [src]="selectedMenu === indx ? item.selectedImgIconPath : item.imgIconPath" alt="">
+                        <p class="no-margin">{{item.label}}</p>
+                    </div>
+                    <!-- <div  
+                        *ngFor="let menu of menuItems;let indx = index"
+                        [class.selected-menu-item]="selectedMenu === indx"
+                        class="menu-item flex a-center gap-1em pointer">
                         <mat-icon>{{menu.icon}}</mat-icon>
                         <p class="no-margin p">{{menu.label}}</p>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="flex column gap-05em a-center absolute logout">
+                <!-- <div class="flex column gap-05em a-center absolute logout">
                     <div (click)="logout()" class="flex gap-05em a-center pointer">
                         <mat-icon>logout</mat-icon>
                         <p class="p">Logout</p>
                     </div>
                     <img class="logo-title" src="../../../assets/images/triple-title-logo.png" alt="">
-                </div>
+                </div> -->
             </div>
         </mat-sidenav>
         <mat-sidenav-content>

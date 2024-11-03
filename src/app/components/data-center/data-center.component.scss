@@ -1,0 +1,28 @@
+$blue: #6672e5;
+
+.inner-container {
+    padding: 1em;
+
+    .title {
+        font-weight: 500;
+        gap: .3em;
+        height: 34px;
+
+        .underline {
+            height: 3px;
+            background-color: $blue;
+        }
+    }
+
+    .learn-container {
+        padding: 3px 15px;
+        background: #6672e520;
+        border-radius: 99px;
+        cursor: pointer;
+        color: #6672e5;
+
+        img {
+            height: 16px;
+        }
+    }
+}

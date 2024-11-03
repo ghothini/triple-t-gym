@@ -19,6 +19,19 @@ import { BarComponent } from './components/charts/bar/bar.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AuthComponent } from './components/authentication/auth/auth.component';
+import { RegisterComponent } from './components/authentication/register/register.component';
+import { DataCenterComponent } from './components/data-center/data-center.component';
+import { ReportsComponent } from './components/data-center/reports/reports.component';
+import { ImportsComponent } from './components/data-center/imports/imports.component';
+import { ReportDownloadComponent } from './components/pop-ups/report-download/report-download.component';
+import { WorkbookImportComponent } from './components/pop-ups/workbook-import/workbook-import.component';
+import { MemberProfileComponent } from './components/member-profile/member-profile.component';
+import { MemberProfileActionsComponent } from './components/member-profile-actions/member-profile-actions.component';
+import { ProfileAddComponent } from './components/pop-ups/profile-add/profile-add.component';
+import { TimePipe } from './pipes/time.pipe';
+import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
+import { DeleteConfirmComponent } from './components/pop-ups/delete-confirm/delete-confirm.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +46,20 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     PieComponent,
     BarComponent,
     PaymentComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AuthComponent,
+    RegisterComponent,
+    DataCenterComponent,
+    ReportsComponent,
+    ImportsComponent,
+    ReportDownloadComponent,
+    WorkbookImportComponent,
+    MemberProfileComponent,
+    MemberProfileActionsComponent,
+    ProfileAddComponent,
+    TimePipe,
+    DateTimeFormatPipe,
+    DeleteConfirmComponent
   ],
   imports: [
     BrowserModule,

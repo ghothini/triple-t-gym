@@ -1,6 +1,15 @@
+$blue: #6672e5;
+
+.color-grey {
+    color: grey;
+}
+
+.font-w-500 {
+    font-weight: 500 !important;
+}
+
 mat-toolbar {
-    background-color: black;
-    color: white;
+    background-color: #ffffff;
 }
 
 .mat-toolbar-single-row {
@@ -11,11 +20,64 @@ h2 {
     font-size: 24px;
 }
 
-.custom-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: unset;
-    width: unset;
-    font-size: 46px;
+.help-container {
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    padding: 0.4em;
+    gap: .2em !important;
+    color: $blue;
+
+    .circle {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 1px solid $blue;
+    }
+
+    small {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 0 !important;
+    }
+}
+
+.profile-container,
+.oversized-profile-container {
+    width: 32px;
+    height: 32px;
+    border: 1px solid white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 6px;
+    background-color: #6672e5;
+
+    p {
+        color: white;
+        font-size: medium;
+    }
+}
+
+.oversized-profile-container {
+    width: 55px !important;
+    height: 55px !important;
+
+    p {
+        font-size: x-large !important;
+    }
+}
+
+.menu-items {
+    height: 30px;
+    padding-left: .5em;
+    
+    img {
+        height: 18px;
+    }
+
+    p {
+        font-size: medium;
+    }
+
+    &:hover {
+        background-color: #F1F1F1;
+    }
 }

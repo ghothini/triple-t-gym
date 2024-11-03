@@ -1,6 +1,5 @@
-$color-white: white;
-$logo-red: #da695a;
-$app-secondary: #3f51b5;
+$light-blue: #F0F2F9;
+$blue: #6672e5;
 
 mat-sidenav {
     width: 254px;
@@ -13,51 +12,35 @@ mat-toolbar {
 }
 
 .sideNav {
-    .p {
-        font-size: larger;
-    }
+    padding: 1em;
+    box-sizing: border-box;
 
-    .menu-item {
-        width: 177px;
-        height: 40px;
-        border-radius: 7px;
-        padding-left: .5em;
-        color: #c8c8ce;
-        outline: none;
+    .business-name-container {
+        gap: .3em;
 
-        &:hover {
-            background-color: $app-secondary;
-            color: white !important;
+        .triple-icon-img {
+            height: 59px;
         }
     }
 
-    .selected-menu-item {
-        background-color: $app-secondary;
-        color: white !important;
-    }
+    .menu-item {
+        padding: .2em .5em;
 
-    .role {
-        // color: $app-secondary;
-        font-size: x-large;
-    }
+        img {
+            height: 21px;
+        }
 
-    .logo {
-        width: 176px;
-    }
+        &:focus {
+            outline: none;
+        }
 
-    .logo-title {
-        width: 244px;
-    }
-
-    .logout {
-        bottom: 0;
+        &:hover {
+            background-color: $light-blue;
+            color: $blue;
+        }
     }
 }
 
 .hr {
     width: 90%;
-}
-
-.m-t-2em {
-    margin-top: 2em;
 }

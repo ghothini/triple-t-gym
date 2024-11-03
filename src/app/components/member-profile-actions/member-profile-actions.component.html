@@ -1,0 +1,116 @@
+<div class="main-container flex column gap-1em">
+    <div class="inner-container flex a-center wrap">
+        <div (click)="selectAction(indx)" [class.selected-action]="selectedAction === indx"
+            *ngFor="let label of actionsLabels;let indx = index" class="action-container pointer">
+            <small>{{label}}</small>
+        </div>
+    </div>
+    <div class="flex column gap-05em">
+        <div class="custom-hr full-width"></div>
+        <div [ngSwitch]="selectedAction" class="notes flex column">
+            <div *ngSwitchCase="0" class="flex">
+                <p *ngIf="gymMemberNotes.length < 1" class="no-margin full-width text-center">Sorry no data here</p>
+                <section *ngIf="gymMemberNotes.length > 0" class="timeline-area flex column gap-1em">
+                    <div *ngFor="let note of gymMemberNotes" class="timeline flex column gap-05em relative">
+                        <div class="flex a-center space-between">
+                            <p class="no-margin">Note</p>
+                            <div (click)="deleteNote(note)" class="btn flex center-center pointer">
+                                <small>Delete Note</small>
+                            </div>
+                        </div>
+                        <small>{{note.note}}</small>
+                        <small class="color-blue">{{note.createDate | date}}, {{note.createDate | dateTimeFormat}}
+                            {{note.createDate | time}}</small>
+                        <mat-icon class="absolute">description</mat-icon>
+                    </div>
+                </section>
+            </div>
+            <div *ngSwitchCase="1">
+                <div *ngFor="let row of additionalInfoData; let indx = index" class="flex column gap-05em">
+                    <div class="title-value-container flex a-center">
+                        <div class="title">
+                            <p class="no-margin">{{row.label}}</p>
+                        </div>
+                        <div class="value">
+                            <p *ngIf="row.label !== 'Join Date'" class="no-margin">{{row.value}}</p>
+                            <p *ngIf="row.label === 'Join Date'" class="no-margin">{{row.value | date}}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="additionalInfoData.length - 1 !== indx" class="additionalInfoData-hr full-width"></div>
+                </div>
+            </div>
+            <div *ngSwitchCase="2" class="family-members flex column gap-05em">
+                <div class="flex a-center j-end gap-05em">
+                    <small class="no-margin count-txt f-weight-500">{{dataSource.filteredData.length}} of 10 members
+                        added</small>
+                    <div (click)="addFamilyMember()" class="btn flex center-center pointer">
+                        <mat-icon>add</mat-icon>
+                        <small class="f-weight-500">Add Family Members</small>
+                    </div>
+                </div>
+                <div class="table full-width">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+                            <td class="color-blue" mat-cell *matCellDef="let row"> {{row.name}} </td>
+                        </ng-container>
+
+                        <!-- Email Column -->
+                        <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email ID</th>
+                            <td mat-cell *matCellDef="let row"> {{row.email ? row.email : 'N/A'}} </td>
+                        </ng-container>
+
+                        <!-- Phone Number Column -->
+                        <ng-container matColumnDef="phoneNumber">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+                            <td mat-cell *matCellDef="let row"> {{row.phoneNumber}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </div>
+            <div *ngSwitchCase="3" class="payments-information flex column">
+                <form [formGroup]="paymentsYearFormGroup" class="flex center-center">
+                    <!-- Year -->
+                    <mat-form-field>
+                        <input type="text" formControlName="year" (input)="loadAnnualPayments()" matInput
+                            placeholder="Year of Payments" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <mat-icon matSuffix>calendar_month</mat-icon>
+                        <mat-error *ngIf="paymentsYearFormGroup.get('year')?.hasError('required')">
+                            Year of payments is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="paymentsYearFormGroup.get('year')?.hasError('pattern')">
+                            Enter a <strong>valid</strong> year
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+                <mat-card>
+                    <div class="flex wrap center-center">
+                        <div *ngFor="let payment of annualMonthsPayments"
+                            [class.color-payment-made]="payment.paymentAmt > 0"
+                            class="payment-month flex center-center relative">
+                            <p class="no-margin">{{payment.month}}</p>
+                            <small *ngIf="payment.paymentAmt > 0"
+                                class="no-margin absolute f-weight-500">R{{payment.paymentAmt}}</small>
+                        </div>
+                    </div>
+                </mat-card>
+                <div (click)="makeMemberPayment()" class="flex center-center gap-05em pointer">
+                    <p>Make a Payment</p>
+                    <mat-icon>add_circle</mat-icon>
+                </div>
+            </div>
+            <div *ngSwitchCase="4" class="flex column gap-05em">
+                <p class="no-margin f-weight-500">Delete this Member and all the related data</p>
+                <div (click)="deleteMember()" class="btn flex center-center pointer">
+                    <mat-icon>delete</mat-icon>
+                    <small class="f-weight-500">Delete Member</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

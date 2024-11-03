@@ -36,10 +36,6 @@ export class DashboardComponent implements AfterViewInit {
   isEddingPlans: boolean = false;
   paymentPlans: any[] = [];
   paymentsPerMonth: any;
-  selectedNav: any = {
-    label: 'Dashboard',
-    icon: 'dashboard'
-  }
   constructor(private dialog: MatDialog, private router: Router, private sharedService: SharedService,
     private snackbar: MatSnackBar, private cd: ChangeDetectorRef) {
     this.yearFormGroup = new FormGroup({

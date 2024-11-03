@@ -1,0 +1,22 @@
+<div class="main-container flex a-center gap-1em">
+    <div class="import-container half-width">
+        <div class="flex column gap-1em">
+            <p class="no-margin f-weight-500">Preparing for an import</p>
+            <small class="no-margin f-weight-500 f-size-14px">What would you like to import?</small>
+            <!-- Members Status -->
+            <form class="flex column border-box">
+                <div class="flex column form-field relative">
+                    <input type="text" readonly value="Members">
+                    <mat-icon class="absolute">arrow_drop_down</mat-icon>
+                </div>
+            </form>
+            <div class="import-guides flex column">
+                <small class="f-weight-500">Always import Clients first.</small>
+                <small (click)="downloadImportTemplate('members')" class="f-weight-500 import-txt pointer">Members Import Template.</small>
+            </div>
+            <div (click)="importMembers()" class="btn pointer flex center-center">
+                <p class="no-margin">Start Import</p>
+            </div>
+        </div>
+    </div>
+</div>

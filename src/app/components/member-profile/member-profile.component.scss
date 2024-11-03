@@ -1,0 +1,104 @@
+$blue: #6672e5;
+$light-brown: #dbdbdb;
+$grey-line: #e5e5e5;
+
+.color-black {
+    color: #000000;
+}
+
+.main-container {
+    height: 100dvh;
+
+    .inner-container {
+        padding: 0em 1em;
+
+        .go-back-container {
+            color: $blue;
+
+            img {
+                height: 24px;
+            }
+        }
+
+        .btn {
+            width: 88px;
+            height: 35px;
+            border: 1px solid $blue;
+            border-radius: 5px;
+            color: $blue;
+            background-color: $blue;
+            color: #ffffff;
+
+            mat-icon {
+                font-size: 20px !important;
+                height: unset !important;
+                width: unset !important;
+            }
+        }
+
+        .profile-container {
+            min-width: 250px;
+            max-width: 314px;
+            padding: 1em;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px #00000015;
+
+            mat-icon {
+                height: unset !important;
+                width: unset !important;
+                font-size: 22px !important;
+            }
+
+            .edit-container {
+                width: 26px;
+                height: 44px;
+                background: #f1f1f1;
+                border-radius: 3px;
+                font-size: 20px;
+                border: 1px solid #eee;
+                top: 9px;
+                right: 10px;
+            }
+
+            .profile-img {
+                background-color: #dbdbdb;
+                height: 150px;
+                width: 150px;
+                border-radius: 50%;
+
+                img {
+                    height: 85px;
+                }
+            }
+
+            .action-upload {
+                border-radius: 50%;
+                padding: 12px;
+                background-color: white;
+                box-shadow: 0 0 8px 1px #00000030;
+                right: 0;
+                bottom: 8px;
+
+                img {
+                    height: 23px;
+                }
+            }
+
+            .custom-hr {
+                border-bottom: 1px solid $grey-line;
+                margin-top: .5em;
+            }
+
+            .profile-info {
+                color: #777;
+
+                small {
+                    font-size: 14px;
+
+                }
+            }
+        }
+    }
+}

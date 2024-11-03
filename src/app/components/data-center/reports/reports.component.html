@@ -1,0 +1,12 @@
+<div class="main-container flex a-center gap-1em">
+    <div (click)="selectCard(indx)" *ngFor="let card of reportCards; let indx = index"  class="report-container pointer">
+        <div class="flex column gap-05em">
+            <div class="flex a-center space-between">
+                <img [src]="card.imgIconPath" alt="">
+                <mat-icon>north_east</mat-icon>
+            </div>
+            <p class="no-margin f-weight-500">{{card.label}}</p>
+            <p class="no-margin">{{card.subLabel}}</p>
+        </div>
+    </div>
+</div>

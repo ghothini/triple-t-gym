@@ -1,144 +1,83 @@
-$app-secondary: #3f51b5;
-
-.light-grey {
-    color: #c8c8ce;
-}
-
-.color-white {
-    color: white;
-}
+$blue: #6672e5;
+$light-brown: #dbdbdb;
 
 .main-container {
-    position: relative;
-    height: 100%;
+    height: 100dvh;
 
-    form {
-        height: calc(100dvh - 48px);
+    .members-action-container {
         padding: 1em;
-        box-sizing: border-box;
-    }
 
-    .table {
-        max-width: 100%;
-        overflow-x: auto;
-    }
+        .members-action {
+            padding: .2em;
+            border: 1px solid $blue;
+            border-radius: 5px;
+            color: $blue;
 
-    .no-members-err {
-        color: red;
-        margin-left: 1em;
-        padding-top: 1em;
-    }
+            &:hover {
+                background-color: $blue;
+                color: #ffffff;
+            }
 
-    .search {
-        width: 200px;
-        padding: 10px;
-        border-radius: 7px;
-        border: 1px solid black;
-
-        &:focus {
-            outline: none;
+            &:nth-child(3) {
+                background-color: $blue;
+                color: #ffffff;
+            }
         }
     }
 
-    .member-img {
-        background-size: cover;
-        height: 36px;
-        width: 39px;
-        border-radius: 50%;
+    .no-members-container {
+        height: calc(100dvh - 67px - 48px);
 
         img {
-            height: 25px;
+            height: 230px
+        }
+
+        .first-client-btn {
+            padding: .5em 2em;
+            background-color: $blue;
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            box-shadow: 0px 2px 6px rgb(74, 74, 74, 0.6);
         }
     }
 
-    .male-bg-img {
-        background-image: url('../../../assets/images/male-profile.png');
-    }
+    form {
+        padding: 1em;
+        min-height: calc(100dvh - 48px - 67px - 88px);
+        max-height: calc(100dvh - 48px - 67px - 88px);
+        overflow-x: auto;
+        gap: .7em;
 
-    .female-bg-img {
-        background-image: url('../../../assets/images/female-profile.png');
-    }
+        .form-field {
+            height: unset !important;
+        }
 
-    .search-container {
-        position: relative;
-        margin-left: 1em;
+        .img-container {
+            height: 43px;
+            width: 45px;
+            border-radius: 50%;
+            background-color: $light-brown;
 
-        .search-icon {
-            position: absolute;
-            top: 7px;
-            right: 10px;
-            font-size: 33px;
+            img {
+                height: 25px;
+            }
         }
     }
-
-    .add-member {
-        height: 54px;
-        width: 54px;
-        color: white;
-        background-color: $app-secondary;
-        border-radius: 50%;
-        position: absolute;
-        bottom: 10px;
-        left: 20px;
+    
+    .hover-row {
+        &:hover {
+            background-color: #F8F9FA !important;
+        }
     }
-
-    mat-icon {
-        font-size: 37px;
-    }
-
-    .member-payments {
-        text-decoration: underline;
-        color: blueviolet;
-    }
-
-    .filtered-members {
-        margin-right: 2em;
-    }
-}
-
-.padding-10px {
-    padding: 1em;
-}
-
-.payment-icon {
-    padding: 0px;
-    background-color: $app-secondary;
-    border-radius: 50%;
-    font-size: large !important;
-}
-
-mat-icon {
-    display: flex;
-    align-items: center;
-    overflow: visible;
-    justify-content: center;
-}
-
-.span {
-    color: blue;
-    text-decoration: underline;
-}
-
-.action {
-    font-size: x-large !important;
-    cursor: pointer;
 }
 
 @media screen and (max-width: 960px) {
-    .outer-search {
-        justify-content: center;
-        flex-direction: column-reverse;
-    }
 
     .mat-sort-header-content {
         &:nth-child(1) {
             width: 133px !important;
         }
-    }
-
-    .filtered-members {
-        margin-right: 0em !important;
-        font-size: 20px;
     }
 
     table {

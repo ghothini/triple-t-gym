@@ -1,0 +1,64 @@
+<div class="main-container full-dvh full-width flex">
+    <div class="half-width flex column gap-1em center-center">
+        <h2 class="no-margin">Hey, let's set up your gym service</h2>
+        <form [formGroup]="registerFormGroup" class="half-width flex column border-box">
+            <!-- Email -->
+            <div class="flex column form-field">
+                <input type="email" formControlName="email" placeholder="Email">
+                <small class="color-red no-margin"
+                    *ngIf="registerFormGroup.get('email')?.hasError('required') && registerFormGroup.get('email')?.touched">Email
+                    is
+                    <strong>required</strong></small>
+                <small class="color-red no-margin" *ngIf="registerFormGroup.get('email')?.hasError('pattern')">Enter
+                    a <strong>valid</strong> email address</small>
+            </div>
+            <!-- Full Name -->
+            <div class="flex column form-field">
+                <input type="text" formControlName="fullName" placeholder="Full Name">
+                <small class="color-red no-margin"
+                    *ngIf="registerFormGroup.get('fullName')?.hasError('required') && registerFormGroup.get('fullName')?.touched">
+                    Full Name is <strong>required</strong></small>
+            </div>
+            <!-- Phone Number -->
+            <div class="flex column form-field relative">
+                <input class="padding-l-205em" type="text" formControlName="phoneNumber" placeholder="Phone Number"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <small class="color-red no-margin"
+                    *ngIf="registerFormGroup.get('phoneNumber')?.hasError('required') && registerFormGroup.get('phoneNumber')?.touched">
+                    Phone Number is <strong>required</strong></small>
+                <small class="color-red no-margin"
+                    *ngIf="registerFormGroup.get('phoneNumber')?.hasError('pattern')">Enter
+                    a <strong>valid</strong> phone number</small>
+                <img class="absolute sa-img-icon" src="../../../../assets/images/sa.png" alt="">
+            </div>
+            <!-- Business Name -->
+            <div class="flex column form-field">
+                <input type="text" formControlName="businessName" placeholder="Business Name">
+                <small class="color-red no-margin"
+                    *ngIf="registerFormGroup.get('businessName')?.hasError('required') && registerFormGroup.get('businessName')?.touched">
+                    Business Name is <strong>required</strong></small>
+            </div>
+            <!-- Where Did You Hear About Us -->
+            <div class="flex column form-field relative">
+                <input type="text" readonly [matMenuTriggerFor]="menu" formControlName="aboutUs"
+                    placeholder="Where did you hear about us?">
+                <mat-icon class="absolute">arrow_drop_down</mat-icon>
+                <small class="color-red no-margin"
+                    *ngIf="registerFormGroup.get('aboutUs')?.hasError('required') && registerFormGroup.get('aboutUs')?.touched">
+                    This field is <strong>required</strong></small>
+                <mat-menu #menu="matMenu">
+                    <div class="menu-list flex column gap-05em">
+                        <p (click)="selectedMenuItem(item)" *ngFor="let item of menuListItems"
+                            class="no-margin pointer">{{item}}</p>
+                    </div>
+                </mat-menu>
+            </div>
+            <button (click)="submit()" class="btn pointer">
+                <p class="no-margin">Continue</p>
+            </button>
+        </form>
+    </div>
+    <div class="half-width bg-white flex center-center">
+        <img class="logo-icon-img" src="../../../../assets/images/triple-t-circle-logo.png" alt="">
+    </div>
+</div>

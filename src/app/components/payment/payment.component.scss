@@ -1,11 +1,8 @@
-$light-blue: #3f51b5;
+$dark-light-white: #f3f3f3;
+$blue: #6672e5;
 
-.color-black {
-    color: black !important;
-}
-
-.color-light-blue {
-    color: $light-blue;
+.color-selected-month {
+    background-color: #F5F5F5 !important;
 }
 
 .padding-1em {
@@ -13,80 +10,48 @@ $light-blue: #3f51b5;
 }
 
 .span {
-    text-decoration: underline $light-blue;
+    text-decoration: underline;
 }
 
-.email {
-    color: $light-blue;
+.main-container {
 
-    p {
-        text-decoration: underline;
+    form {
+
+        .title-container {
+            background-color: $blue !important;
+            color: white !important;
+            width: 100% !important;
+            margin-bottom: .5em
+        }
+
+        .form-field {
+            height: unset !important;
+            width: 177px !important;
+        }
+
+        .email-container {
+            position: relative;
+
+            .edit-payment-amt {
+                position: absolute;
+                top: 23px;
+                right: 63px;
+            }
+        }
+
+        .btn,
+        .title-container {
+            width: 88px;
+            height: 35px;
+            background-color: $dark-light-white;
+            border-radius: 5px;
+            font-weight: 400;
+            border: 1px solid #ddd;
+
+            &:nth-child(2) {
+                background-color: $blue;
+                color: white;
+            }
+        }
     }
-
-    mat-icon {
-        font-size: medium;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-.back-btn {
-    position: absolute;
-    top: 13px;
-    bottom: 99px;
-}
-
-.email-container {
-    position: relative;
-
-    .edit-payment-amt {
-        position: absolute;
-        top: 23px;
-        right: 63px;
-    }
-}
-
-.add-btn {
-    background-color: $light-blue;
-    border-radius: 50%;
-    color: white;
-}
-
-.primary-color {
-    color: $light-blue;
-}
-
-.payment-tab {
-    margin-top: 1em;
-}
-
-.payments {
-    height: 71px;
-}
-
-.m-t-1em {
-    margin-top: 1.2em;
-}
-
-// Material
-
-.mat-button-toggle-appearance-standard,
-.mat-button-toggle {
-    border-left: none !important;
-    width: 80px !important;
-}
-
-.mat-button-toggle-group {
-    display: flex !important;
-    justify-content: center !important;
-}
-
-// .mat-button-toggle-standalone.mat-button-toggle-appearance-standard:not([class*=mat-elevation-z]), .mat-button-toggle-group-appearance-standard:not([class*=mat-elevation-z]) {
-//     box-shadow: 5px 5px lightblue;
-// }
-
-.mat-button-toggle-group-appearance-standard {
-
-    border-radius: 0px !important;
 }

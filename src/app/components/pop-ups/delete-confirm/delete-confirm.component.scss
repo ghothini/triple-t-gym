@@ -1,0 +1,30 @@
+$light-red: #ed5565;
+
+.main-container {
+    padding: 1em;
+
+    mat-icon {
+        color: $light-red;
+    }
+
+    .btn {
+        width: 88px;
+        height: 35px;
+        border: 1px solid #d0d0d0;
+        border-radius: 5px;
+        background-color: #d0d0d0;
+        color: #ffffff;
+
+        &:nth-child(2) {
+            border: 1px solid $light-red;
+            border-radius: 5px;
+            background-color: $light-red;
+            color: #ffffff;
+            width: 198px;
+        }
+    }
+}
+
+.f-weight-300 {
+    font-weight: 300;
+}

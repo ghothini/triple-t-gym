@@ -1,0 +1,58 @@
+$blue: #6672e5;
+
+.main-container {
+    padding: 1em;
+
+    .form-field {
+        width: 215px;
+    }
+
+    .workbook-file-container {
+        width: 533px;
+        border-radius: 6px;
+        border: 1px dashed $blue;
+        background-color: rgba(102, 114, 229, 0.1254901961);
+        font-size: 14px;
+        padding: 0em .5em;
+        box-sizing: border-box;
+
+        label {
+            padding: 0.3em;
+        }
+
+        .file-upload-button {
+            font-family: "Poppins", sans-serif !important;
+            background-color: #ffffff;
+            color: #6672e5;
+            border: 1px solid #6672e5;
+            border-radius: 5px;
+        }
+
+        input {
+            display: none;
+        }
+    }
+
+    .disclaimer-container {
+        margin-top: -0.4em;
+    }
+
+    .btn {
+        width: 88px;
+        height: 35px;
+        background-color: #f3f3f3;
+        border-radius: 5px;
+        font-weight: 400;
+        border: 1.5px solid $blue;
+        color: $blue;
+
+        p {
+            font-size: 14px;
+        }
+
+        &:nth-child(2) {
+            background-color: $blue !important;
+            color: #ffffff !important;
+        }
+    }
+}

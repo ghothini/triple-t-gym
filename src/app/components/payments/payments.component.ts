@@ -67,10 +67,6 @@ export class PaymentsComponent implements AfterViewInit {
     console.log("allPayments", this.allPayments)
     this.updateItemsToShow(10);
   }
-  selectedNav: any = {
-    label: 'Transactions',
-    icon: 'trending_up'
-  }
 
   ngAfterViewInit(): void {
   }

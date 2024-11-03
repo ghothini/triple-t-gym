@@ -1,0 +1,47 @@
+<div class="main-container">
+    <app-toolbar></app-toolbar>
+    <div class="inner-container flex column gap-1em">
+        <div class="flex a-center space-between">
+            <div class="flex column gap-05em">
+                <div routerLink="/landing/members" class="go-back-container flex a-center gap-05em pointer">
+                    <img class="arrow-back" src="../../../assets/images/icons/left-arrow.png" alt="">
+                    <p class="no-margin">Clients</p>
+                </div>
+                <h2 class="no-margin pointer">Client Profile</h2>
+            </div>
+            <div (click)="addNote()" class="btn flex center-center pointer">
+                <mat-icon>add</mat-icon>
+                <small>Add Note</small>
+            </div>
+        </div>
+        <div class="flex gap-2em">
+            <div class="profile-container flex center-center column gap-1em relative">
+                <div (click)="editMember()" class="edit-container absolute flex center-center pointer">
+                    <mat-icon>edit</mat-icon>
+                </div>
+                <div class="relative">
+                    <div class="profile-img flex center-center ">
+                        <img src="../../../assets/images/icons/user.png" alt="">
+                    </div>
+                    <div class="action-upload flex center-center pointer absolute">
+                        <img src="../../../assets/images/icons/photo-camera-interface-symbol-for-button.png" alt="">
+                    </div>
+                </div>
+                <h2 class="no-margin">{{memberToView.name | titlecase}}</h2>
+                <div class="custom-hr full-width"></div>
+                <div class="profile-info flex column full-width gap-1em">
+                    <p class="no-margin f-weight-600">Contact Information</p>
+                    <div class="flex column gap-05em">
+                        <small class="f-weight-500">Email Address</small>
+                        <p class="no-margin color-black">{{memberToView.email | lowercase}}</p>
+                    </div>
+                    <div class="flex column gap-05em">
+                        <small class="f-weight-500">Contact Number</small>
+                        <p class="no-margin color-black">{{memberToView.phoneNumber}}</p>
+                    </div>
+                </div>
+            </div>
+            <app-member-profile-actions></app-member-profile-actions>
+        </div>
+    </div>
+</div>

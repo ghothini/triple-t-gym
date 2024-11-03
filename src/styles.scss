@@ -9,7 +9,7 @@ body {
     height: 100dvh;
 }
 
-$app-secondary: #e7e1fc;
+$purple: #e7e1fc;
 
 // Colors
 .color-red {
@@ -36,7 +36,6 @@ $app-secondary: #e7e1fc;
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-
 
 // flex
 
@@ -117,6 +116,10 @@ app-toolbar {
     width: 100%;
 }
 
+.full-dvh {
+    height: 100dvh;
+}
+
 .full-height {
     height: 100%;
 }
@@ -126,7 +129,7 @@ app-toolbar {
 }
 
 .half-width {
-    height: 50%;
+    width: 50%;
 }
 
 .width-80 {
@@ -151,6 +154,14 @@ app-toolbar {
     z-index: 1;
 }
 
+.f-weight-500 {
+    font-weight: 500;
+}
+
+.f-weight-600 {
+    font-weight: 600;
+}
+
 .wrap {
     flex-wrap: wrap;
 }
@@ -169,7 +180,54 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+// form
+
+form {
+    .form-field {
+        height: 55px;
+
+        input {
+            font-family: "Poppins", sans-serif;
+            padding: 7px;
+            border-radius: 7px;
+            border: 1px solid lightgrey;
+            background-color: #f8f8ff;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .sa-img-icon {
+            width: 20px;
+            left: 8px;
+            top: 8px;
+        }
+
+        .padding-l-205em {
+            padding-left: 2.5em;
+        }
+
+        mat-icon {
+            right: 6px;
+            top: 6px;
+            color: brown;
+        }
+    }
+}
+
+// ul overwrite
+
+ul {
+    margin: 0 !important;
+    font-size: 14px !important;
+}
+
 // material
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+    padding: .5em !important;
+}
 
 .mat-mdc-text-field-wrapper {
     height: unset !important;
@@ -223,7 +281,7 @@ body {
 
 th:first-child {
     border-radius: 10px 0 0 10px !important;
-    background-color: $app-secondary !important;
+    background-color: $purple !important;
 }
 
 // Set border-radius on the top-right and bottom-right of the last table data on the table row
@@ -233,11 +291,11 @@ th:first-child {
 
 th:last-child {
     border-radius: 0 10px 10px 0 !important;
-    background-color: $app-secondary !important;
+    background-color: $purple !important;
 }
 
 .mat-mdc-table .mdc-data-table__header-row {
-    background-color: $app-secondary;
+    background-color: $purple;
 }
 
 // Material responsive

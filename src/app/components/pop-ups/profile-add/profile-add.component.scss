@@ -1,0 +1,65 @@
+$app-secondary: #3f51b5;
+$white: white;
+$light-white: #f9f9fe;
+$dark-light-white: #f3f3f3;
+$grey-line: #e5e5e5;
+$blue: #6672e5;
+
+.color-blue {
+    color: $blue;
+}
+
+.main-container {
+
+    .title-container {
+        background-color: $light-white;
+        padding: 30px 15px;
+        border-bottom: 1px solid $grey-line;
+    }
+
+    form {
+        padding: 1em 1.5em;
+
+        .text-area {
+            height: 93px !important;
+            gap: .2em;
+        }
+
+        .phone-number-container {
+            width: 214px;
+        }
+
+        textarea {
+            font-family: "Poppins", sans-serif;
+            padding: 0px 7px;
+            border-radius: 7px;
+            border: 1px solid lightgrey;
+            background-color: #f8f8ff;
+            min-height: 47px;
+            max-height: 47px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .submit-container {
+        padding: 15px;
+        border-top: 1px solid $grey-line;
+
+        .btn {
+            width: 88px;
+            height: 35px;
+            background-color: $dark-light-white;
+            border-radius: 5px;
+            font-weight: 400;
+            border: 1px solid #ddd;
+
+            &:nth-child(2) {
+                background-color: $blue;
+                color: white;
+            }
+        }
+    }
+}

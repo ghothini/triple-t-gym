@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PaymentsComponent } from '../payments/payments.component';
 import { PaymentComponent } from '../payment/payment.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-members',
@@ -15,35 +16,47 @@ import { PaymentComponent } from '../payment/payment.component';
   styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements AfterViewInit {
-  displayedColumns: string[] = ['membershipNo','joinDate', 'email', 'gender', 'contact', 'payments', 'actions'];
+  displayedColumns: string[] = ['image', 'name', 'gender', 'joinDate', 'email', 'phoneNumber'];
   dataSource: any;
   allMembers: any;
-  gymMembersAvailable: boolean = false;
-  selectedNav: any = {
-    label: 'Gym Members',
-    icon: 'group'
-  }
+  gymMembersAdded: boolean = false;
+  currentUser: any;
+  totalMembers: number = 0;
+  currentPageIndex: number = 0;
+  membersActions: any[] = [
+    {
+      label: 'Import Members',
+      icon: 'arrow_upward'
+    },
+    {
+      label: 'Export Members',
+      icon: 'arrow_downward'
+    },
+    {
+      label: 'Add Member',
+      icon: 'person_add'
+    }
+  ]
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private sharedService: SharedService, private dialog: MatDialog, private snackbar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public filteredMembers: any) {
-    this.assignMembers()
-    if (filteredMembers.filteredType) {
-      this.dataSource = new MatTableDataSource<any>(filteredMembers.members);
-    }
+    private router: Router) {
+    this.currentUser = this.sharedService.getStorage('currentUser', 'session');
   }
+
   addMember() {
     const dialogRef = this.dialog.open(FormComponent, {
-      height: '80%'
+      width: '60%'
     })
     dialogRef.afterClosed().subscribe((result: any) => {
-      this.assignMembers();
+      this.getMembers();
     })
   }
 
   ngAfterViewInit() {
+    this.getMembers();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -57,42 +70,75 @@ export class MembersComponent implements AfterViewInit {
     }
   }
 
-  assignMembers() {
-    this.allMembers = this.sharedService.getStorage('gymMembers', 'local');
-    this.dataSource = new MatTableDataSource<any>(this.allMembers.reverse());
+  membersAction(indx: number) {
+    switch (indx) {
+      case 0:
+        this.router.navigate(['/landing/data-center/imports']);
+        break;
+      case 1:
+        this.router.navigate(['/landing/data-center/reports']);
+        break;
+      default:
+        this.addMember();
+        break;
+    }
+  }
+
+  getMembers() {
+    const allGymMembers = this.sharedService.getStorage('allGymMembers', 'local');
+    this.allMembers = allGymMembers.filter((member: any) => member.gymBusiness === this.currentUser.email).reverse();
     if (this.allMembers.length > 0) {
-      this.gymMembersAvailable = true;
+      this.gymMembersAdded = true;
+      this.updateItemsToShow(5);
     } else {
-      this.gymMembersAvailable = false;
+      this.gymMembersAdded = false;
     }
   }
 
-  editMember(member: any) {
-    const dialogRef = this.dialog.open(FormComponent, {
-      data: member
-    })
-    dialogRef.afterClosed().subscribe((result: any) => {
-      this.assignMembers();
-    })
+  // Method to update items to show on the current page
+  updateItemsToShow(itemsPerPage: any) {
+    this.totalMembers = this.allMembers.length;
+    console.log("this.totalMembers", this.totalMembers)
+    const startIndex = this.currentPageIndex * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    this.dataSource = new MatTableDataSource<any>(this.allMembers.slice(startIndex, endIndex));
   }
 
-  deleteMember(member: any) {
-    const confirmation = prompt('Enter delete to confirm action')
-    if (confirmation?.toLowerCase() !== 'delete') {
-      this.snackbar.open('Action cancelled', 'Ok', { duration: 3000 });
-      return;
-    }
-  this.allMembers = this.allMembers.filter((_member: any) => _member.email !== member.email);
-    this.sharedService.setStorage('gymMembers', this.allMembers, 'local');
-    this.assignMembers();
-    this.snackbar.open('Member deleted successfully', 'Ok', { duration: 3000 });
+  onPageChange(e: any) {
+    this.currentPageIndex = e.pageIndex;
+    this.updateItemsToShow(e.pageSize);
   }
 
-  seePayment(member: any) {
-    this.dialog.open(PaymentComponent,{
-      data: member,
-      width: '335px',
-      height: '509px',
-    });
+  viewMember(row: any) {
+    this.router.navigate([`landing/profile/${row.email}`]);
   }
+
+  // editMember(member: any) {
+  //   const dialogRef = this.dialog.open(FormComponent, {
+  //     data: member
+  //   })
+  //   dialogRef.afterClosed().subscribe((result: any) => {
+  //     this.getMembers();
+  //   })
+  // }
+
+  // deleteMember(member: any) {
+  //   const confirmation = prompt('Enter delete to confirm action')
+  //   if (confirmation?.toLowerCase() !== 'delete') {
+  //     this.snackbar.open('Action cancelled', 'Ok', { duration: 3000 });
+  //     return;
+  //   }
+  //   this.allMembers = this.allMembers.filter((_member: any) => _member.email !== member.email);
+  //   this.sharedService.setStorage('gymMembers', this.allMembers, 'local');
+  //   this.getMembers();
+  //   this.snackbar.open('Member deleted successfully', 'Ok', { duration: 3000 });
+  // }
+
+  // seePayment(member: any) {
+  //   this.dialog.open(PaymentComponent, {
+  //     data: member,
+  //     width: '335px',
+  //     height: '509px',
+  //   });
+  // }
 }

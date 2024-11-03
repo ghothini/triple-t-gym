@@ -1,0 +1,47 @@
+$light-brown: #555;
+$blue: #6672e5;
+
+.main-container {
+    .import-container {
+        border: 0.5px solid #e4e1e0;
+        border-radius: 8px;
+        padding: 24px;
+        background-color: #f9fafe;
+
+        p {
+            font-size: 15px;
+        }
+
+        .form-field {
+            width: 215px;
+        }
+
+        .import-guides {
+            padding-left: 1em;
+
+            .import-txt {
+                color: $blue;
+                text-decoration: underline dashed;
+            }
+
+        }
+
+        .btn {
+            width: 91px;
+            height: 35px;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            font-weight: 400;
+            background-color: #6672e5;
+            color: #ffffff;
+
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.f-size-14px {
+    font-size: 14px;
+}

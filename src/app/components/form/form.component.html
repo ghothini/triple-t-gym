@@ -1,83 +1,115 @@
-<div class="flex column padding-8px">
-    <div class="flex gap-1em a-center">
-        <!-- <mat-icon class="add-person-icon">person_add</mat-icon>
-        <h2 class="title no-margin">{{edittingMember ? 'Edit': 'Add'}} Member</h2> -->
-        <h2 class="no-margin">Personal Details</h2>
+<div class="main-container flex column">
+    <div class="title-container flex center-center">
+        <h2 class="no-margin">{{isOnEdit ? 'Edit' : 'Add'}} Member</h2>
     </div>
-    <form [formGroup]="addingMemberFormGroup" class="flex column">
-        <div class="flex a-center fields-container gap-1em">
-            <mat-form-field class="flex-1">
-                <mat-label>Names</mat-label>
-                <input formControlName="fullName" type="text" matInput placeholder="Names">
-                <mat-error *ngIf="addingMemberFormGroup.get('fullName')?.hasError('required')">
-                    Names are <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="flex-1">
-                <mat-label>Gender</mat-label>
-                <mat-select formControlName="gender">
-                    <mat-option *ngFor="let gender of membersGender" [value]="gender">
-                        {{gender | titlecase}}
-                    </mat-option>
-                </mat-select>
-                <mat-error *ngIf="addingMemberFormGroup.get('gender')?.hasError('required')">
-                    Gender is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
+    <form [class.on-edit-form]="isOnEdit" [formGroup]="addingMemberFormGroup" class="flex column border-box">
+        <!-- Name -->
+        <div class="flex column form-field">
+            <input type="text" formControlName="name" placeholder="Name">
+            <small
+                *ngIf="addingMemberFormGroup.get('name')?.hasError('required') && addingMemberFormGroup.get('name')?.touched"
+                class="color-red no-margin">Name
+                is
+                <strong>required</strong></small>
         </div>
-        <div class="flex gap-1em fields-container">
-            <mat-form-field class="flex-1">
-                <mat-label>Cellphone</mat-label>
-                <input formControlName="cellphone" type="text" matInput placeholder="Enter cellphone">
-                <mat-icon matPrefix>call</mat-icon>
-            </mat-form-field>
-            <mat-form-field class="flex-1">
-                <mat-label>Emergency Contact</mat-label>
-                <input formControlName="emergencyCellphone" type="text" matInput
-                    placeholder="Enter emergency cellphone">
-                <mat-icon matPrefix class="color-red">add_call</mat-icon>
-            </mat-form-field>
+        <!-- Email -->
+        <div class="flex column form-field">
+            <input type="email" formControlName="email" placeholder="Email">
+            <small class="color-red no-margin"
+                *ngIf="addingMemberFormGroup.get('email')?.hasError('required') && addingMemberFormGroup.get('email')?.touched">Email
+                is
+                <strong>required</strong></small>
+            <small class="color-red no-margin" *ngIf="addingMemberFormGroup.get('email')?.hasError('pattern')">Enter
+                a <strong>valid</strong> email address</small>
         </div>
-        <div class="flex gap-1em fields-container">
-            <div class="flex flex-1 column textarea-container">
-                <textarea formControlName="homeAddr" required name="" id="" cols="30" rows="6"
-                    placeholder="Home Address"></textarea>
-                <small
-                    [class.show]="addingMemberFormGroup.get('homeAddr')?.hasError('required') && addingMemberFormGroup.get('homeAddr')?.touched"
-                    class="err-msg">Address is <span> required</span></small>
-            </div>
-            <mat-form-field class="flex-1">
-                <mat-label>Email</mat-label>
-                <input formControlName="email" type="email" matInput placeholder="Enter email">
-                <mat-error *ngIf="addingMemberFormGroup.get('email')?.hasError('pattern')">
-                    Please enter a valid email address
-                </mat-error>
-            </mat-form-field>
+        <!-- Phone Number -->
+        <div class="flex column form-field relative">
+            <input class="padding-l-205em" type="text" formControlName="phoneNumber" placeholder="Phone Number"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            <small class="color-red no-margin"
+                *ngIf="addingMemberFormGroup.get('phoneNumber')?.hasError('required') && addingMemberFormGroup.get('phoneNumber')?.touched">
+                Phone Number is <strong>required</strong></small>
+            <small class="color-red no-margin"
+                *ngIf="addingMemberFormGroup.get('phoneNumber')?.hasError('pattern')">Enter
+                a <strong>valid</strong> phone number</small>
+            <img class="absolute sa-img-icon" src="../../../../assets/images/sa.png" alt="">
         </div>
-        <div class="flex a-center gap-1em fields-container last">
-            <mat-form-field class="flex-1">
-                <mat-label>Joindate</mat-label>
-                <input matInput formControlName="joinDate" readonly [min]="todayDate" (focus)="picker.open()"
+        <small *ngIf="!isOnEdit" class="color-blue pointer m-b-3em">Additional Information</small>
+        <div *ngIf="isOnEdit" class="flex full-width column">
+            <!-- Join Date -->
+            <mat-form-field appearance="fill">
+                <mat-label>Join Date</mat-label>
+                <input matInput formControlName="joinDate" [max]="maxDate" readonly (focus)="picker.open()"
                     [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="addingMemberFormGroup.get('joinDate')?.hasError('required')">
-                    Joindate is <strong>required</strong>
-                </mat-error>
             </mat-form-field>
-            <mat-form-field class="flex-1">
-                <mat-label>Membership Number</mat-label>
-                <input readonly formControlName="membershipNo" type="text" matInput>
-            </mat-form-field>
-        </div>
-
-        <div class="flex gap-1em a-center">
-            <mat-checkbox *ngIf="!edittingMember" (click)="changeMemberType()" class="example-margin">Late
-                registration?</mat-checkbox>
-        </div>
-        <div class="flex j-end">
-            <button (click)="submit()" color="primary" mat-raised-button>{{edittingMember ? 'Save' : 'Submit'}}</button>
+            <div class="flex j-end">
+                <div (click)="triggerAdditionalInfo()" class="btn flex center-center pointer">
+                    <small>Additional Information</small>
+                </div>
+            </div>
+            <div *ngIf="showAdditionalInfo" class="flex column">
+                <!-- Emergency Contact Name -->
+                <div class="flex column form-field m-t-1em">
+                    <input type="text" formControlName="emergencyContactName" placeholder="Emergency Contact Name">
+                </div>
+                <!-- Emergency Contact Email -->
+                <div class="flex column form-field">
+                    <input type="text" formControlName="emergencyContactEmail" placeholder="Emergency Contact Email">
+                    <small class="color-red no-margin"
+                        *ngIf="addingMemberFormGroup.get('emergencyContactEmail')?.hasError('pattern')">Enter
+                        a <strong>valid</strong> email address</small>
+                </div>
+                <!-- Emergency Contact Phone Number -->
+                <div class="flex column form-field">
+                    <input type="text" formControlName="emergencyContactPhoneNumber"
+                        placeholder="Emergency Contact Phone Number"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <small class="color-red no-margin"
+                        *ngIf="addingMemberFormGroup.get('emergencyContactPhoneNumber')?.hasError('pattern')">Enter
+                        a <strong>valid</strong> phone number</small>
+                </div>
+                <!-- Gender -->
+                <div class="flex column form-field relative">
+                    <input type="text" readonly [matMenuTriggerFor]="menu" formControlName="gender"
+                        placeholder="Gender">
+                    <mat-icon class="absolute">arrow_drop_down</mat-icon>
+                    <small class="color-red no-margin"
+                        *ngIf="addingMemberFormGroup.get('gender')?.hasError('required') && addingMemberFormGroup.get('gender')?.touched">
+                        Gender is <strong>required</strong></small>
+                    <mat-menu #menu="matMenu">
+                        <div class="menu-list flex column gap-05em">
+                            <p (click)="selectGender(gender)" *ngFor="let gender of membersGender"
+                                class="no-margin pointer">{{gender}}</p>
+                        </div>
+                    </mat-menu>
+                </div>
+                <!-- Address -->
+                <div class="flex column form-field">
+                    <input type="text" formControlName="address" placeholder="Address">
+                </div>
+                <!-- Age -->
+                <div class="flex column form-field">
+                    <input type="text" formControlName="age" placeholder="Age"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                </div>
+            </div>
         </div>
     </form>
+    <div class="submit-container flex column a-end gap-05em">
+        <div *ngIf="!isOnEdit" class="flex a-center">
+            <mat-checkbox (click)="selectCheckbox()"></mat-checkbox>
+            <small>Add Multiple</small>
+        </div>
+        <div class="flex a-center gap-05em">
+            <div (click)="close()" class="btn flex center-center pointer">
+                <p class="no-margin">{{isOnEdit ? 'Close' : 'Cancel'}}</p>
+            </div>
+            <div (click)="submit()" [class.on-edit-btn]="isOnEdit" class="btn flex center-center pointer">
+                <mat-icon *ngIf="!isOnEdit">add</mat-icon>
+                <p class="no-margin">{{isOnEdit ? 'Update Profile' : 'Add'}}</p>
+            </div>
+        </div>
+    </div>
 </div>

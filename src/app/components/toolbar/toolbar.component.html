@@ -3,7 +3,36 @@
         <mat-icon>menu</mat-icon>
     </button>
     <div class="flex gap-1em center-center full-width">
-        <h2>{{component.label}}</h2>
-        <mat-icon class="custom-icon">{{component.icon}}</mat-icon>
+        <h2>{{currentUser.businessName | titlecase}}</h2>
+    </div>
+    <div class="flex a-center gap-05em">
+        <div class="help-container flex a-center gap-05em">
+            <div class="circle flex center-center">
+                <small>?</small>
+            </div>
+            <small class="no-margin">Help</small>
+        </div>
+        <div [matMenuTriggerFor]="menu" class="profile-container flex center-center pointer">
+            <p class="no-margin">{{this.currentUserAcronyms}}</p>
+        </div>
+        <mat-menu #menu="matMenu">
+            <div class="flex column gap-1em">
+                <div class="flex a-center gap-05em">
+                    <div class="oversized-profile-container flex center-center pointer">
+                        <p class="no-margin">{{this.currentUserAcronyms}}</p>
+                    </div>
+                    <div class="flex column">
+                        <p class="no-margin font-w-500">{{currentUser.fullName | titlecase}}</p>
+                        <p class="no-margin color-grey">{{currentUser.email | lowercase}}</p>
+                    </div>
+                </div>
+                <div class="flex column gap-05em">
+                    <div *ngFor="let item of menuItems" class="menu-items flex a-center gap-05em pointer">
+                        <img *ngIf="item.imgIconPath" [src]="item.imgIconPath" alt="">
+                        <p class="no-margin">{{item.label}}</p>
+                    </div>
+                </div>
+            </div>
+        </mat-menu>
     </div>
 </mat-toolbar>

@@ -1,0 +1,38 @@
+<div class="main-container flex column gap-1em">
+    <div class="flex column">
+        <p class="no-margin f-weight-500">Import Type</p>
+        <form>
+            <!-- Import Type -->
+            <div class="flex column form-field">
+                <input type="text" readonly value="Members">
+            </div>
+        </form>
+    </div>
+    <div class="flex column">
+        <p class="no-margin f-weight-500">Your workbook</p>
+        <div class="flex gap-1em">
+            <div class="workbook-file-container flex column center-center">
+                <label class="file-upload-button pointer" for="upload">Choose file to upload</label>
+                <p *ngIf="uploadedFile.size !== 0" class="no-margin text-center">{{uploadedFile.name}}
+                    ({{uploadedFile.size}} kB)
+                </p>
+                <input id="upload" type="file">
+            </div>
+            <div class="disclaimer-container flex column">
+                <p class="no-margin f-weight-500">DISCLAIMER</p>
+                <ul>
+                    <li>Only .xlsx format is supported.</li>
+                    <li>Please note that only the first 2000 rows in the sheet will be processed.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="flex a-center gap-1em">
+        <div (click)="close()" class="btn pointer flex center-center">
+            <p class="no-margin">Cancel</p>
+        </div>
+        <div (click)="submit()" class="btn pointer flex center-center">
+            <p class="no-margin">Import</p>
+        </div>
+    </div>
+</div>

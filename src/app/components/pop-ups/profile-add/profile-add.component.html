@@ -1,0 +1,54 @@
+<div class="main-container flex column">
+    <div class="title-container flex center-center">
+        <h2 class="no-margin">{{formType === 'note' ? 'Add Note' : 'Add Family Member'}}</h2>
+    </div>
+    <form *ngIf="formType === 'family'" [formGroup]="familyMemberFormGroup" class="flex column border-box">
+        <!-- Name -->
+        <div class="flex column form-field">
+            <input type="text" formControlName="name" placeholder="Member's Name">
+            <small
+                *ngIf="familyMemberFormGroup.get('name')?.hasError('required') && familyMemberFormGroup.get('name')?.touched"
+                class="color-red no-margin">Name
+                is
+                <strong>required</strong></small>
+        </div>
+        <!-- Email -->
+        <div class="flex column form-field">
+            <input type="email" formControlName="email" placeholder="Member's Email (optional)">
+            <small class="color-red no-margin" *ngIf="familyMemberFormGroup.get('email')?.hasError('pattern')">Enter
+                a <strong>valid</strong> email address</small>
+        </div>
+        <!-- Phone Number -->
+        <div class="phone-number-container flex column form-field relative">
+            <input class="padding-l-205em" type="text" formControlName="phoneNumber" placeholder="Member's Phonenumber">
+            <small class="color-red no-margin"
+                *ngIf="familyMemberFormGroup.get('phoneNumber')?.hasError('required') && familyMemberFormGroup.get('phoneNumber')?.touched">
+                Phone Number is <strong>required</strong></small>
+            <small class="color-red no-margin"
+                *ngIf="familyMemberFormGroup.get('phoneNumber')?.hasError('pattern')">Enter
+                a <strong>valid</strong> phone number</small>
+            <img class="absolute sa-img-icon" src="../../../../assets/images/sa.png" alt="">
+        </div>
+    </form>
+    <form *ngIf="formType === 'note'" [formGroup]="noteFormGroup" class="flex column border-box">
+        <!-- Note -->
+        <div class="flex column form-field text-area">
+            <small class="f-weight-500">Member Notes</small>
+            <textarea name="" id="" cols="30" formControlName="note" rows="20"></textarea>
+            <small *ngIf="noteFormGroup.get('note')?.hasError('required') && noteFormGroup.get('note')?.touched"
+                class="color-red no-margin">Note
+                is
+                <strong>required</strong></small>
+        </div>
+    </form>
+    <div class="submit-container flex column a-end gap-05em">
+        <div class="flex a-center gap-05em">
+            <div (click)="close()" class="btn flex center-center pointer">
+                <p class="no-margin">Close</p>
+            </div>
+            <div (click)="submit()" class="btn flex center-center pointer">
+                <p class="no-margin">{{formType === 'note' ? 'Save' : 'Add'}}</p>
+            </div>
+        </div>
+    </div>
+</div>
